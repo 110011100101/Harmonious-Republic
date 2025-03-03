@@ -11,9 +11,32 @@ config_version=5
 [application]
 
 config/name="Harmonious-Republic"
-config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+run/main_scene="uid://duukpefp0fctq"
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+
+[display]
+
+window/size/viewport_width=2560
+window/size/viewport_height=1600
+window/size/mode=4
+window/stretch/mode="canvas_items"
 
 [dotnet]
 
 project/assembly_name="Harmonious-Republic"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "orange",
+"res://Code/": "green",
+"res://StaticData/": "blue"
+}
+
+[gui]
+
+theme/custom_font="uid://cr8tijpmqscfm"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

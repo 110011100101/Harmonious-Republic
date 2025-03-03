@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://cov78r4l27hsm"]
+
+[ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_laf1l"]
+[ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="1_ptofr"]
+[ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_siu2b"]
+[ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_hcnr4"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/ChangeSceneButton.cs" id="5_vhxcr"]
+[ext_resource type="Script" uid="uid://cjhqjbjovdks1" path="res://Code/Class/QuirGameButton.cs" id="7_fruq7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_siu2b"]
+
+[sub_resource type="Theme" id="Theme_siu2b"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.350333, 0.629765, 1, 1)
+Button/colors/font_pressed_color = Color(0, 0.489272, 0.969826, 1)
+Button/constants/h_separation = 40
+Button/font_sizes/font_size = 100
+Button/styles/focus = SubResource("StyleBoxEmpty_siu2b")
+Button/styles/hover = ExtResource("1_siu2b")
+Button/styles/normal = ExtResource("1_ptofr")
+Button/styles/pressed = ExtResource("3_hcnr4")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptofr"]
+atlas = ExtResource("1_laf1l")
+region = Rect2(32, 1120, 184, 280)
+
+[node name="MainMenuUiGroup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.000521025
+theme = SubResource("Theme_siu2b")
+
+[node name="Menu" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -384.0
+offset_top = -415.0
+offset_right = 384.0
+offset_bottom = 413.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ptofr")
+region_rect = Rect2(0, 0, 184, 280)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 24
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="CratePlate" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Crate Plate"
+script = ExtResource("5_vhxcr")
+scenePath = "res://StaticData/Scene/Menu/PlateConfigMenu.tscn"
+
+[node name="Setting" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Setting"
+script = ExtResource("5_vhxcr")
+
+[node name="Exit" type="Button" parent="Menu/VBoxContainer"]
+layout_mode = 2
+text = "Exit"
+script = ExtResource("7_fruq7")

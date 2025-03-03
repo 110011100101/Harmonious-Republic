@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dei2lc0ea4brc"]
+
+[ext_resource type="PackedScene" uid="uid://dxu41doybqic2" path="res://StaticData/Scene/UI/PlateConfigMenu/PlateConfigUIGroup.tscn" id="1_pxn3s"]
+
+[node name="PlateConfigMenu" type="Node2D"]
+
+[node name="PlateConfigUiGroup" parent="." instance=ExtResource("1_pxn3s")]
