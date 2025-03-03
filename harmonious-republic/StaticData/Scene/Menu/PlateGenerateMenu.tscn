@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfd6tnffc7h5u"]
+
+[ext_resource type="PackedScene" uid="uid://bt358hrgyw8q1" path="res://StaticData/Scene/UI/PlateGenerateMenu/PlateGenerateMenuUIGroup.tscn" id="1_wnvyl"]
+
+[node name="PlateGenerateMenu" type="Node2D"]
+
+[node name="PlateGenerateMenuUiGroup" parent="." instance=ExtResource("1_wnvyl")]

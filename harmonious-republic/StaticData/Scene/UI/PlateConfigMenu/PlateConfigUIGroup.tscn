@@ -1,4 +1,4 @@
-[gd_scene load_steps=7217 format=3 uid="uid://dxu41doybqic2"]
+[gd_scene load_steps=7218 format=3 uid="uid://dxu41doybqic2"]
 
 [ext_resource type="StyleBox" uid="uid://dbma8cdx34egk" path="res://StaticData/Theme/TabContainer/tab_hover.tres" id="1_1x4kv"]
 [ext_resource type="StyleBox" uid="uid://babn1lcrws7x8" path="res://StaticData/Theme/TabContainer/panel.tres" id="1_etx8a"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/ChangeSceneButton.cs" id="9_qe8la"]
 [ext_resource type="Texture2D" uid="uid://cgktncgunp4yn" path="res://Assets/Animation/Earth_120fps.png" id="9_qgpoj"]
 [ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/Class/PlateNameLable.cs" id="10_qgpoj"]
+[ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/Class/SetUpBlockNumber.cs" id="11_t4uqs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgpoj"]
 
@@ -18,7 +19,7 @@
 
 [sub_resource type="Theme" id="Theme_hq3ti"]
 Button/colors/font_focus_color = Color(0.87451, 0.87451, 0.87451, 1)
-Button/font_sizes/font_size = 60
+Button/font_sizes/font_size = 70
 Button/styles/focus = SubResource("StyleBoxEmpty_qgpoj")
 Button/styles/hover = ExtResource("1_u2qls")
 Button/styles/normal = ExtResource("2_1aolh")
@@ -50466,13 +50467,12 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 1400.0
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 clip_tabs = false
 tab_focus_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Game" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -50520,8 +50520,30 @@ uppercase = true
 script = ExtResource("10_qgpoj")
 
 [node name="Plate" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/TabContainer/Plate"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 98.0
+offset_right = 746.0
+offset_bottom = 189.0
+theme_override_constants/separation = 40
+
+[node name="BlockNumber" type="Label" parent="NinePatchRect/TabContainer/Plate/HBoxContainer"]
+layout_mode = 2
+text = "板块大小"
+
+[node name="SetUpBlockNumber" type="SpinBox" parent="NinePatchRect/TabContainer/Plate/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+max_value = 1000.0
+value = 100.0
+suffix = "block"
+script = ExtResource("11_t4uqs")
+metadata/_edit_use_anchors_ = true
 
 [node name="More" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
 visible = false
@@ -50547,6 +50569,7 @@ theme_override_constants/separation = 300
 layout_mode = 2
 text = "创建世界"
 script = ExtResource("9_qe8la")
+scenePath = "res://StaticData/Scene/Menu/PlateGenerateMenu.tscn"
 
 [node name="Exit" type="Button" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
@@ -50556,3 +50579,4 @@ script = ExtResource("9_qe8la")
 scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
 
 [connection signal="text_changed" from="NinePatchRect/TabContainer/Game/SetUpPlateName" to="NinePatchRect/TabContainer/Game/PlateName" method="ChangeText"]
+[connection signal="value_changed" from="NinePatchRect/TabContainer/Plate/HBoxContainer/SetUpBlockNumber" to="NinePatchRect/TabContainer/Plate/HBoxContainer/SetUpBlockNumber" method="_UpdateMapSize"]

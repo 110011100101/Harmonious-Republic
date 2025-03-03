@@ -1,0 +1,85 @@
+[gd_scene load_steps=11 format=3 uid="uid://bt358hrgyw8q1"]
+
+[ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_cx3nd"]
+[ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_qoc5i"]
+[ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="2_4ey3c"]
+[ext_resource type="Script" uid="uid://ct7fdwuseissd" path="res://Code/Class/MapGenerator.cs" id="2_44xyb"]
+[ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_80os5"]
+[ext_resource type="TileSet" uid="uid://c8a0kno7337ss" path="res://Assets/TileSet/default.tres" id="3_a47p6"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/ChangeSceneButton.cs" id="4_7fjhj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mepea"]
+
+[sub_resource type="Theme" id="Theme_s8go2"]
+Button/font_sizes/font_size = 70
+Button/styles/focus = SubResource("StyleBoxEmpty_mepea")
+Button/styles/hover = ExtResource("1_qoc5i")
+Button/styles/normal = ExtResource("2_4ey3c")
+Button/styles/pressed = ExtResource("3_80os5")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44xyb"]
+atlas = ExtResource("1_cx3nd")
+region = Rect2(56, 1136, 136, 192)
+
+[node name="PlateGenerateMenuUiGroup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_s8go2")
+metadata/_edit_lock_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 1600.0
+texture = SubResource("AtlasTexture_44xyb")
+metadata/_edit_lock_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -840.0
+offset_top = -224.0
+offset_right = -186.0
+offset_bottom = -103.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/separation = 100
+
+[node name="Exit" type="Button" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+text = "退出
+"
+script = ExtResource("4_7fjhj")
+scenePath = "res://StaticData/Scene/Menu/PlateConfigMenu.tscn"
+
+[node name="BackToMainMenu" type="Button" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+text = "返回主菜单"
+script = ExtResource("4_7fjhj")
+scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 96.0
+offset_right = 1440.0
+offset_bottom = 136.0
+
+[node name="Window" type="SubViewport" parent="NinePatchRect/SubViewportContainer"]
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(1000, 1000)
+render_target_update_mode = 4
+
+[node name="MapGenerator" type="Node2D" parent="NinePatchRect/SubViewportContainer/Window"]
+script = ExtResource("2_44xyb")
+tileSet = ExtResource("3_a47p6")
+metadata/_edit_lock_ = true

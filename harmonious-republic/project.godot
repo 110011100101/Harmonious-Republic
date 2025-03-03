@@ -14,6 +14,10 @@ config/name="Harmonious-Republic"
 run/main_scene="uid://duukpefp0fctq"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 
+[autoload]
+
+Data="*res://Code/Class/Data.cs"
+
 [display]
 
 window/size/viewport_width=2560
