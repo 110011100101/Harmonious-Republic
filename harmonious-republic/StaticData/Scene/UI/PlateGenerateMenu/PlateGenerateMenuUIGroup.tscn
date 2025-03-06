@@ -165,4 +165,5 @@ script = ExtResource("9_80os5")
 
 [connection signal="drag_ended" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/Knob" method="ExitDragState"]
 [connection signal="drag_started" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/Knob" method="EnterDragState"]
+[connection signal="value_changed" from="NinePatchRect/Panel/Knob" to="NinePatchRect/SubViewportContainer/Window/MapGenerator" method="UpdateMapScale"]
 [connection signal="value_changed" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/ProgressBar" method="UpdateValue"]

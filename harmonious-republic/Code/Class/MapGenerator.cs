@@ -5,6 +5,7 @@ using MapGeneration;
 
 public partial class MapGenerator : AbstractMapGenerator
 {
+    private float scaleValue = 1;
     public override TileMapLayer AddMapIntoTree()
     {
         TileMapLayer map  = new TileMapLayer();
@@ -58,7 +59,7 @@ public partial class MapGenerator : AbstractMapGenerator
 
     public override void UpdateMapFromHeightMap(Dictionary<Vector2I, int> heightMap, TileMapLayer map, int mapSize)
     {
-        float scaleValue = 125f / (8f * mapSize);
+        scaleValue = 125f / (8f * mapSize);
         map.Scale = new Vector2(scaleValue, scaleValue);
 
         foreach (Vector2I cell in heightMap.Keys)
@@ -67,5 +68,10 @@ public partial class MapGenerator : AbstractMapGenerator
             
             map.SetCell(cell, (int)EnumMaterial.Soil , new Vector2I(height, 0));
         }
+    }
+
+    public void UpdateMapScale(float scale)
+    {
+        GetChild<TileMapLayer>(0).Scale = new Vector2((scale / 100) + scaleValue, (scale / 100) + scaleValue);
     }
 }
