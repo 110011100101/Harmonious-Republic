@@ -3,5 +3,5 @@ using System;
 
 public partial class Data : Node
 {
-    public int mapSize = 100;
+    public int mapSize {get; set;}
 }

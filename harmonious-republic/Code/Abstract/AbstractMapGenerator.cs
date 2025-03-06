@@ -6,10 +6,10 @@ namespace MapGeneration
 {
     public abstract partial class AbstractMapGenerator : Node2D, IMapGenerator
     {
-        [Export] public TileSet tileSet;
-        public Data data;
+        [Export] private TileSet tileSet;
+        private Data data;
 
-        public override void _Draw()
+        public override void _Ready()
         {
             data = GetNode<Data>("/root/Data");
 

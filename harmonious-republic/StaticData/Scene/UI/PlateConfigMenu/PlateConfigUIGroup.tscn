@@ -8,10 +8,10 @@
 [ext_resource type="StyleBox" uid="uid://dejb4fr0qx5il" path="res://StaticData/Theme/TabContainer/tab_selected.tres" id="2_etx8a"]
 [ext_resource type="StyleBox" uid="uid://dwwckdhdtgueq" path="res://StaticData/Theme/TabContainer/tab_unselected.tres" id="3_6gjhe"]
 [ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_qe8la"]
-[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/ChangeSceneButton.cs" id="9_qe8la"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/Button/ChangeSceneButton.cs" id="9_qe8la"]
 [ext_resource type="Texture2D" uid="uid://cgktncgunp4yn" path="res://Assets/Animation/Earth_120fps.png" id="9_qgpoj"]
-[ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/Class/PlateNameLable.cs" id="10_qgpoj"]
-[ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/Class/SetUpBlockNumber.cs" id="11_t4uqs"]
+[ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/Class/Lable/PlateNameLable.cs" id="10_qgpoj"]
+[ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/Class/Setup/SetUpBlockNumber.cs" id="11_t4uqs"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgpoj"]
 

@@ -46,7 +46,6 @@ public partial class MapGenerator : AbstractMapGenerator
             FractalGain = 0.27f,                                // 控制振幅衰减
         };
         
-
         foreach (var cell in cells)
         {
             float noiseValue = noise.GetNoise2D(cell.X, cell.Y);
@@ -60,8 +59,6 @@ public partial class MapGenerator : AbstractMapGenerator
     public override void UpdateMapFromHeightMap(Dictionary<Vector2I, int> heightMap, TileMapLayer map, int mapSize)
     {
         float scaleValue = 125f / (8f * mapSize);
-        GD.Print(scaleValue);
-        GD.Print(mapSize);
         map.Scale = new Vector2(scaleValue, scaleValue);
 
         foreach (Vector2I cell in heightMap.Keys)

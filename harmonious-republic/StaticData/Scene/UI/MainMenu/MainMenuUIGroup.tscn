@@ -4,8 +4,8 @@
 [ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="1_ptofr"]
 [ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_siu2b"]
 [ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_hcnr4"]
-[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/ChangeSceneButton.cs" id="5_vhxcr"]
-[ext_resource type="Script" uid="uid://cjhqjbjovdks1" path="res://Code/Class/QuirGameButton.cs" id="7_fruq7"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/Button/ChangeSceneButton.cs" id="5_vhxcr"]
+[ext_resource type="Script" uid="uid://cjhqjbjovdks1" path="res://Code/Class/Button/QuirGameButton.cs" id="7_fruq7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_siu2b"]
 
