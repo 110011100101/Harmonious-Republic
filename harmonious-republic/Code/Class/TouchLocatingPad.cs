@@ -23,9 +23,9 @@ public partial class TouchLocatingPad : Area2D
 				subViewport.GetNode<Sprite2D>("LightPoint").Position = subViewport.GetNode<Sprite2D>("LightPoint").Position.Lerp(mapPointAimPosition, 0.1f);
 			}
 			
+			// 插值向目标点移动
 			if (pointAimPosition != GetNode<Sprite2D>("LightPoint").Position)
 			{
-				// 插值向目标点移动
 				GetNode<Sprite2D>("LightPoint").Position = GetNode<Sprite2D>("LightPoint").Position.Lerp(pointAimPosition, 0.1f);
 			}
 		}
