@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bt358hrgyw8q1"]
+[gd_scene load_steps=22 format=3 uid="uid://bt358hrgyw8q1"]
 
 [ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_cx3nd"]
 [ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_qoc5i"]
@@ -32,6 +32,16 @@ region = Rect2(549, 1525, 7, 5)
 content_margin_top = 5.0
 bg_color = Color(0.95, 0.95, 0.95, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80os5"]
+bg_color = Color(0.105882, 0.133333, 0.211765, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mepea"]
+bg_color = Color(0.458824, 0.141176, 0.219608, 1)
+
 [sub_resource type="Theme" id="Theme_s8go2"]
 Button/font_sizes/font_size = 70
 Button/styles/focus = SubResource("StyleBoxEmpty_mepea")
@@ -43,6 +53,8 @@ HSlider/icons/grabber_disabled = SubResource("AtlasTexture_mepea")
 HSlider/icons/grabber_highlight = SubResource("AtlasTexture_s8go2")
 HSlider/icons/tick = SubResource("AtlasTexture_ub0vs")
 HSlider/styles/slider = SubResource("StyleBoxFlat_qoc5i")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_80os5")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_mepea")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_44xyb"]
 atlas = ExtResource("1_cx3nd")
@@ -140,26 +152,32 @@ offset_bottom = 1272.0
 [node name="Knob" type="HSlider" parent="NinePatchRect/Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.744
-anchor_top = 0.771
-anchor_right = 0.744
-anchor_bottom = 0.771
-offset_left = -29.76
-offset_top = -30.84
-offset_right = -10.76
-offset_bottom = -11.84
+anchor_left = 0.237
+anchor_top = 0.237
+anchor_right = 0.237
+anchor_bottom = 0.237
+offset_left = -9.48
+offset_top = -9.48
+offset_right = 9.52
+offset_bottom = 9.52
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(5, 5)
 pivot_offset = Vector2(9.5, 9.5)
+scrollable = false
 script = ExtResource("8_4ey3c")
 
 [node name="ProgressBar" type="ProgressBar" parent="NinePatchRect/Panel"]
-layout_mode = 0
-offset_left = -64.0
-offset_top = -80.0
-offset_right = 86.0
-offset_bottom = -50.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.225
+anchor_top = -1.625
+anchor_right = 0.225
+anchor_bottom = -1.625
+offset_left = -75.0
+offset_top = -15.0
+offset_right = 75.0
+offset_bottom = 15.0
 show_percentage = false
 script = ExtResource("9_80os5")
 
