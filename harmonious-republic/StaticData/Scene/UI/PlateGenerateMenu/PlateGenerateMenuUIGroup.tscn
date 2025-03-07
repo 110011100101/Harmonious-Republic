@@ -139,7 +139,7 @@ metadata/_edit_lock_ = true
 [node name="TouchLocatingPad" type="Area2D" parent="NinePatchRect"]
 position = Vector2(2112, 1192)
 script = ExtResource("8_mepea")
-lightPointPath = "res://Assets/UI_Texture/LightPoint.png"
+PointTexturePath = "res://Assets/UI_Texture/point.png"
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/TouchLocatingPad"]
 clip_contents = true

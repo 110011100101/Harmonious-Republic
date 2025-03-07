@@ -72,6 +72,6 @@ public partial class MapGenerator : AbstractMapGenerator
 
     public void UpdateMapScale(float scale)
     {
-        GetChild<TileMapLayer>(0).Scale = new Vector2((scale / 100) + scaleValue, (scale / 100) + scaleValue);
+        Scale = new Vector2(Mathf.Clamp((scale * 10 / 100) + 1, 1, 100), Mathf.Clamp((scale * 10 / 100) + 1, 1, 100)) ;
     }
 }
