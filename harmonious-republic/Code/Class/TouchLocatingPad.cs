@@ -6,13 +6,14 @@ public partial class TouchLocatingPad : Area2D
 {
 	[Export] public string PointTexturePath { get; set; }
 	private bool isTouching = false;
+	[Export] private string subViewportPath;
 	private SubViewport subViewport;
 	private Vector2 mapPointTargetPosition;
 	private Vector2 pointTargetPosition;
 
 	public override void _Ready()
 	{
-		subViewport = GetNode<SubViewport>("../SubViewportContainer/SubViewport");
+		subViewport = GetNode<SubViewport>(subViewportPath);
 	}
 
 	public override void _Process(double delta)
@@ -85,6 +86,29 @@ public partial class TouchLocatingPad : Area2D
 		else if (eventMouseButton.ButtonIndex == MouseButton.Right)
 		{
 			RemoveScalePoint();
+		}
+
+		if (eventMouseButton.ButtonIndex == MouseButton.WheelUp)
+		{
+			if (Input.IsKeyPressed(Key.Shift))
+			{
+				GetNode<HSlider>("../Panel/Knob").Value += 0.5f;
+			}
+			else
+			{
+				GetNode<HSlider>("../Panel/Knob").Value += 0.1f;
+			}
+		}
+		else if (eventMouseButton.ButtonIndex == MouseButton.WheelDown)
+		{
+			if (Input.IsKeyPressed(Key.Shift))
+			{
+				GetNode<HSlider>("../Panel/Knob").Value -= 0.5f;
+			}
+			else
+			{
+				GetNode<HSlider>("../Panel/Knob").Value -= 0.1f;
+			}
 		}
 	}
 

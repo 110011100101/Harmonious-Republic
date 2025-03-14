@@ -12,6 +12,7 @@ public partial class PlateNameLable : Label
 		else
 		{
 			Text = text;
+			GetNode<Data>("/root/Data").plateName = text;
 		}
 	}
 }

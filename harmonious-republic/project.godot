@@ -23,6 +23,7 @@ Data="*res://Code/Class/Data.cs"
 window/size/viewport_width=2560
 window/size/viewport_height=1600
 window/stretch/mode="canvas_items"
+mouse_cursor/tooltip_position_offset=Vector2(60, 0)
 
 [dotnet]
 
@@ -39,6 +40,10 @@ folder_colors={
 [gui]
 
 theme/custom_font="uid://cr8tijpmqscfm"
+theme/default_font_antialiasing=0
+theme/default_font_hinting=0
+theme/default_font_subpixel_positioning=0
+theme/default_font_generate_mipmaps=true
 
 [rendering]
 

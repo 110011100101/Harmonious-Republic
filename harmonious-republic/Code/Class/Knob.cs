@@ -16,8 +16,9 @@ public partial class Knob : HSlider
 		GD.Print("ExitDragState");
 		isDraging = false;
 	}
-	
-	public override void _Input(InputEvent @event) {
+
+    public override void _GuiInput(InputEvent @event)
+    {
 		// 当按下了左键
 		if (Input.IsMouseButtonPressed(MouseButton.Left))
 		{

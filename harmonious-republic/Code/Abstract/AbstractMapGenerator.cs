@@ -20,9 +20,9 @@ namespace MapGeneration
         {
             TileMapLayer map = AddMapIntoTree();
             InitizedMap(map, tileSet);
-            Array<Vector2I> cells = GenerateBaseMap(data.mapSize);
+            Array<Vector2I> cells = GenerateBaseMap(data.plateSize);
             Dictionary<Vector2I, int> heightMap = GenerateHeightMap(cells);
-            UpdateMapFromHeightMap(heightMap, map, data.mapSize);
+            UpdateMapFromHeightMap(heightMap, map, data.plateSize);
         }
 
         public abstract TileMapLayer AddMapIntoTree();
