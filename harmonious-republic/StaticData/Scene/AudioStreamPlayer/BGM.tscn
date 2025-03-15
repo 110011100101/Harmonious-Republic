@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://lr8jgoim2fv6"]
+
+[ext_resource type="AudioStream" uid="uid://0r5txoygg6u7" path="res://Assets/Music/中世纪曲风-雨下给穷人也下给富人.mp3" id="1_5hf8r"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_5hf8r")
+autoplay = true
+attenuation = 1e-05
+parameters/looping = true
