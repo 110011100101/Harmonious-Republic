@@ -22,6 +22,7 @@ namespace MapGeneration
             InitizedMap(map, tileSet);
             Array<Vector2I> cells = GenerateBaseMap(data.plateSize);
             Dictionary<Vector2I, int> heightMap = GenerateHeightMap(cells);
+            
             UpdateMapFromHeightMap(heightMap, map, data.plateSize);
         }
 

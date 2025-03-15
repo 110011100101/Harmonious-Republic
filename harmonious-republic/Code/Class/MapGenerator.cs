@@ -41,7 +41,7 @@ public partial class MapGenerator : AbstractMapGenerator
         {
             Seed = (int)GD.Randi(),                             // 关键修改点
             NoiseType = FastNoiseLite.NoiseTypeEnum.Perlin,
-            Frequency = 0.05f,                                  // 这个值越小地图越大块(平滑)
+            Frequency = 0.0495f,                                  // 这个值越小地图越大块(平滑)
             FractalOctaves = 5,                                 // 增加分形层数
             FractalLacunarity = 3,                              // 增强层间差异
             FractalGain = 0.27f,                                // 控制振幅衰减
@@ -66,7 +66,21 @@ public partial class MapGenerator : AbstractMapGenerator
         {
             int height = heightMap[cell];
             
-            map.SetCell(cell, (int)EnumMaterial.Soil , new Vector2I(height, 0));
+            map.SetCell(cell, (int)EnumMaterial.Soil , new Vector2I(height, 1));
+        }
+
+        foreach (Vector2I cell in heightMap.Keys)
+        {
+            int height = heightMap[cell];
+
+            if (height <= 1)
+            {
+                map.SetCell(cell, (int)EnumMaterial.Soil, new Vector2I(height, 0));
+            }
+            else if (height >= 2)
+            {
+                map.SetCell(cell, (int)EnumMaterial.Water, new Vector2I(height, 0));
+            }
         }
     }
 
