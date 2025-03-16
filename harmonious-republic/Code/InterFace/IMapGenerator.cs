@@ -1,10 +1,18 @@
-using System.Threading.Tasks;
 using Godot;
-using Godot.Collections;
+using RoseIsland.CustomClass;
 
 namespace MapGeneration
 {
-    public interface IMapGenerator : IHeightMapGenerator, IBaseMapGenerator, IUpdateMapFromHeightMap, IMapInitialization, IAddMapIntoTree;
+    public interface IMapGenerator : 
+        IHeightMapGenerator, 
+        IMapInitialization, 
+        IAddMapIntoTree, 
+        IHumidityMapGenerator,
+        ITemperatureMapGenerator,
+        IEnvironmentMapGenerator
+    {
+        void RenderMap(Matrix<int> environmentMap, TileMapLayer map, int mapSize);
+    }
 
     public interface IAddMapIntoTree
     {
@@ -17,20 +25,28 @@ namespace MapGeneration
         void InitizedMap(TileMapLayer map, TileSet tileSet);
     }
 
-    public interface IBaseMapGenerator
-    {
-        // return a array of cell's position.
-        Array<Vector2I> GenerateBaseMap(int mapSize);
-    }
-
     public interface IHeightMapGenerator
     {
-        // return a dictionary of cell's height.
-        Dictionary<Vector2I, int> GenerateHeightMap(Array<Vector2I> cells);
+        /// <summary>
+        /// return a matrix of cell's height.
+        /// </summary>
+        /// <param name="cells"></param>
+        /// <returns></returns>
+        Matrix<int> GenerateHeightMap(int plateSize);
     }
 
-    public interface IUpdateMapFromHeightMap
+    public interface IHumidityMapGenerator
     {
-        void UpdateMapFromHeightMap(Dictionary<Vector2I, int> heightMap, TileMapLayer map, int mapSize);
+        Matrix<float> GenerateHumidityMap(Matrix<int> heightMap);
+    }
+
+    public interface ITemperatureMapGenerator
+    {
+        Matrix<float> GenerateTemperatureMap(Matrix<int> heightMap, Matrix<float> humidityMap);
+    }
+
+    public interface IEnvironmentMapGenerator
+    {
+        Matrix<int> GenerateEnvironmentMap(Matrix<int> heightMap, Matrix<float> humidityMap, Matrix<float> temperatureMap);
     }
 }

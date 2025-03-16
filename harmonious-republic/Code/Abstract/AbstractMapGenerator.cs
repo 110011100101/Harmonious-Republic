@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
+using RoseIsland.CustomClass;
 
 namespace MapGeneration
 {
@@ -20,16 +21,21 @@ namespace MapGeneration
         {
             TileMapLayer map = AddMapIntoTree();
             InitizedMap(map, tileSet);
-            Array<Vector2I> cells = GenerateBaseMap(data.plateSize);
-            Dictionary<Vector2I, int> heightMap = GenerateHeightMap(cells);
-            
-            UpdateMapFromHeightMap(heightMap, map, data.plateSize);
+            Matrix<int> heightMap = GenerateHeightMap(data.plateSize);
+            Matrix<float> humidityMap = GenerateHumidityMap(heightMap);
+            Matrix<float> temperatureMap = GenerateTemperatureMap(heightMap, humidityMap);
+            Matrix<int> environmentMap = GenerateEnvironmentMap(heightMap, humidityMap, temperatureMap);
+            RenderMap(environmentMap, map, data.plateSize);
         }
 
+        // Method form interface
         public abstract TileMapLayer AddMapIntoTree();
         public abstract void InitizedMap(TileMapLayer map, TileSet tileSet);
-        public abstract Array<Vector2I> GenerateBaseMap(int mapSize);          
-        public abstract Dictionary<Vector2I, int> GenerateHeightMap(Array<Vector2I> cells);
-        public abstract void UpdateMapFromHeightMap(Dictionary<Vector2I, int> heightMap, TileMapLayer map, int mapSize);
+        public abstract Matrix<int> GenerateHeightMap(int plateSize);
+        public abstract Matrix<float> GenerateHumidityMap(Matrix<int> heightMap);
+        public abstract Matrix<float> GenerateTemperatureMap(Matrix<int> heightMap, Matrix<float> humidityMap);
+        public abstract Matrix<int> GenerateEnvironmentMap(Matrix<int> heightMap, Matrix<float> humidityMap, Matrix<float> temperatureMap);
+        public abstract void RenderMap(Matrix<int> environmentMap, TileMapLayer map, int mapSize);
+
     }
 }
