@@ -50467,12 +50467,13 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 1400.0
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 clip_tabs = false
 tab_focus_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Game" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -50520,23 +50521,26 @@ uppercase = true
 script = ExtResource("10_qgpoj")
 
 [node name="Plate" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/TabContainer/Plate"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/TabContainer/Plate"]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 98.0
-offset_right = 746.0
-offset_bottom = 189.0
+offset_left = 125.0
+offset_top = 121.0
+offset_right = 925.0
+offset_bottom = 307.0
+theme_override_constants/separation = 60
+
+[node name="PlateSize" type="HBoxContainer" parent="NinePatchRect/TabContainer/Plate/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="BlockNumber" type="Label" parent="NinePatchRect/TabContainer/Plate/HBoxContainer"]
+[node name="BlockNumber" type="Label" parent="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize"]
 layout_mode = 2
 text = "板块大小"
 
-[node name="SetUpBlockNumber" type="SpinBox" parent="NinePatchRect/TabContainer/Plate/HBoxContainer"]
+[node name="SetUpPlateSize" type="SpinBox" parent="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 max_value = 1000.0
@@ -50579,4 +50583,4 @@ script = ExtResource("9_qe8la")
 scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
 
 [connection signal="text_changed" from="NinePatchRect/TabContainer/Game/SetUpPlateName" to="NinePatchRect/TabContainer/Game/PlateName" method="ChangeText"]
-[connection signal="value_changed" from="NinePatchRect/TabContainer/Plate/HBoxContainer/SetUpBlockNumber" to="NinePatchRect/TabContainer/Plate/HBoxContainer/SetUpBlockNumber" method="_UpdateMapSize"]
+[connection signal="value_changed" from="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize/SetUpPlateSize" to="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize/SetUpPlateSize" method="_UpdateMapSize"]
