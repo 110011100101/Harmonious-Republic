@@ -27,6 +27,7 @@ namespace MapGeneration
             Matrix<int> environmentMap = GenerateEnvironmentMap(heightMap, humidityMap, temperatureMap);
 
             RenderMap(heightMap, environmentMap, map, data.plateSize);
+            OutPutMap(heightMap, humidityMap, temperatureMap, environmentMap);
         }
 
         // Method form interface
@@ -38,6 +39,6 @@ namespace MapGeneration
         public abstract Matrix<int> GenerateEnvironmentMap(Matrix<int> heightMap, Matrix<float> humidityMap, Matrix<float> temperatureMap);
         
         public abstract void RenderMap(Matrix<int> heightMap, Matrix<int> environmentMap, TileMapLayer map, int mapSize);
-
+        public abstract void OutPutMap(Matrix<int> heightMap, Matrix<float> humidityMap, Matrix<float> temperatureMap, Matrix<int> environmentMap);
     }
 }

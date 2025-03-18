@@ -79,16 +79,16 @@ public partial class TouchLocatingPad : Area2D
 
 	private void HandleMouseButtonEvent(InputEventMouseButton eventMouseButton)
 	{
-		if (eventMouseButton.ButtonIndex == MouseButton.Left)
+		if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.Pressed)
 		{
 			AddOrUpdateScalePoint();
 		}
-		else if (eventMouseButton.ButtonIndex == MouseButton.Right)
+		else if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.Pressed)
 		{
 			RemoveScalePoint();
 		}
 
-		if (eventMouseButton.ButtonIndex == MouseButton.WheelUp)
+		if (eventMouseButton.ButtonIndex == MouseButton.WheelUp && eventMouseButton.Pressed)
 		{
 			if (Input.IsKeyPressed(Key.Shift))
 			{
@@ -99,7 +99,7 @@ public partial class TouchLocatingPad : Area2D
 				GetNode<HSlider>("../Panel/Knob").Value += 0.1f;
 			}
 		}
-		else if (eventMouseButton.ButtonIndex == MouseButton.WheelDown)
+		else if (eventMouseButton.ButtonIndex == MouseButton.WheelDown && eventMouseButton.Pressed)
 		{
 			if (Input.IsKeyPressed(Key.Shift))
 			{
@@ -117,7 +117,7 @@ public partial class TouchLocatingPad : Area2D
 		RectangleShape2D shape = (RectangleShape2D)GetNode<CollisionShape2D>("CollisionShape2D").Shape;
 		Vector2 offset = GetLocalMousePosition() * (subViewport.Size / shape.Size);
 
-		// 触控板缩放点处理逻辑
+		// 触控板上的缩放点处理逻辑
 		if (HasNode("ScalePoint"))
 		{
 			GetNode<Sprite2D>("ScalePoint").Position = GetLocalMousePosition();
@@ -132,7 +132,7 @@ public partial class TouchLocatingPad : Area2D
 			});
 		}
 
-		// 映射缩放点处理逻辑
+		// 映射过去的缩放点处理逻辑
 		if (subViewport.HasNode("ScalePoint"))
 		{
 			subViewport.GetNode<Sprite2D>("ScalePoint").Position = offset;
@@ -147,6 +147,10 @@ public partial class TouchLocatingPad : Area2D
 			});
 		}
 
+		// 更新对应单元格信息
+		GetNode<InformationPad>("../InformationPad").cellPosition = (Vector2I)(offset / (1000 / GetNode<Data>("/root/Data").plateSize));
+		GetNode<InformationPad>("../InformationPad").ChangeText(0f);
+
 		// 更新缩放基点
 		subViewport.GetNode<Node2D>("MapGenerator").Position = offset;
 		subViewport.GetNode<Node2D>("MapGenerator").GetChild<TileMapLayer>(0).Position = -offset;
@@ -157,13 +161,18 @@ public partial class TouchLocatingPad : Area2D
 		if (HasNode("ScalePoint"))
 		{
 			RemoveChild(GetNode<Sprite2D>("ScalePoint"));
+			
+			// 重置单元格信息
+			GetNode<InformationPad>("../InformationPad").cellPosition = new Vector2I(0, 0);
+			GetNode<InformationPad>("../InformationPad").ChangeText(0f);
 		}
 
 		if (subViewport.HasNode("ScalePoint"))
 		{
 			subViewport.RemoveChild(subViewport.GetNode<Sprite2D>("ScalePoint"));
 		}
-
+		
+		// 重置缩放基点
 		subViewport.GetNode<Node2D>("MapGenerator").Position = new Vector2(0, 0);
 		subViewport.GetNode<Node2D>("MapGenerator").GetChild<TileMapLayer>(0).Position = new Vector2(0, 0);
 	}

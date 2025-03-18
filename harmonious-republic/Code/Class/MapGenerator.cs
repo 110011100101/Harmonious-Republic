@@ -1,11 +1,6 @@
-using System;
-using System.Security.Cryptography.X509Certificates;
 using Godot;
 using MapGeneration;
 using RoseIsland.CustomClass;
-
-using EnvironmentPair = System.Collections.Generic.KeyValuePair<Godot.Vector2I, EnumMaterial>;
-using HeightPair = System.Collections.Generic.KeyValuePair<Godot.Vector2I, int>;
 
 public partial class MapGenerator : AbstractMapGenerator
 {
@@ -171,6 +166,14 @@ public partial class MapGenerator : AbstractMapGenerator
 
             map.SetCell(new Vector2I(x, y), material, new Vector2I(heightMap.GetValue(new Vector2I(x, y)), 0));
         }
+    }
+
+    public override void OutPutMap(Matrix<int> heightMap, Matrix<float> humidityMap, Matrix<float> temperatureMap, Matrix<int> environmentMap)
+    {
+        GetNode<InformationPad>("../../../InformationPad").heightMap = heightMap;
+        GetNode<InformationPad>("../../../InformationPad").humidityMap = humidityMap;
+        GetNode<InformationPad>("../../../InformationPad").temperatureMap = temperatureMap;
+        GetNode<InformationPad>("../../../InformationPad").environmentMap = environmentMap;
     }
 
     public void UpdateMapScale(float scale)
