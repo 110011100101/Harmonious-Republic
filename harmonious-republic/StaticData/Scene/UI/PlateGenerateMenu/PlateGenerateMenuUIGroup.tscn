@@ -168,6 +168,9 @@ render_target_update_mode = 4
 script = ExtResource("2_44xyb")
 tileSet = ExtResource("3_a47p6")
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="NinePatchRect/SubViewportContainer/SubViewport"]
+energy = 0.5
+
 [node name="TouchLocatingPad" type="Area2D" parent="NinePatchRect"]
 position = Vector2(2112, 1192)
 script = ExtResource("8_mepea")

@@ -99,7 +99,6 @@ public partial class MapGenerator : AbstractMapGenerator
 
             // 调整温度计算逻辑
             float temperature = Mathf.Clamp((-20 + y - (height * 5) - humidity * noiseValue) * 0.5f, -40, 60);
-            GD.Print(temperature);
 
             temperatureMap.SetValue(new Vector2I(x, y), temperature);
         }
@@ -160,7 +159,7 @@ public partial class MapGenerator : AbstractMapGenerator
         return environmentMap;
     }
 
-    public override void RenderMap(Matrix<int> environmentMap, TileMapLayer map, int mapSize)
+    public override void RenderMap(Matrix<int> heightMap, Matrix<int> environmentMap, TileMapLayer map, int mapSize)
     {
         float scaleValue = 125f / (8f * mapSize);
         map.Scale = new Vector2(scaleValue, scaleValue);
@@ -170,7 +169,7 @@ public partial class MapGenerator : AbstractMapGenerator
         {
             int material = environmentMap.GetValue(new Vector2I(x, y));
 
-            map.SetCell(new Vector2I(x, y), material, new Vector2I(0, 0));
+            map.SetCell(new Vector2I(x, y), material, new Vector2I(heightMap.GetValue(new Vector2I(x, y)), 0));
         }
     }
 

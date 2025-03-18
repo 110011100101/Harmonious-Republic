@@ -9,10 +9,7 @@ namespace MapGeneration
         IAddMapIntoTree, 
         IHumidityMapGenerator,
         ITemperatureMapGenerator,
-        IEnvironmentMapGenerator
-    {
-        void RenderMap(Matrix<int> environmentMap, TileMapLayer map, int mapSize);
-    }
+        IEnvironmentMapGenerator;
 
     public interface IAddMapIntoTree
     {

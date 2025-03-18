@@ -7,13 +7,11 @@ public partial class Knob : HSlider
 	
 	public void EnterDragState()
 	{
-		GD.Print("EnterDragState");
 		isDraging = true;
 	}
 
 	public void ExitDragState(bool isValueChanged)
 	{
-		GD.Print("ExitDragState");
 		isDraging = false;
 	}
 
