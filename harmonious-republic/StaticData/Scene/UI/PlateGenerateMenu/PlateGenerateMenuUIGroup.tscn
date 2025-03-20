@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://bt358hrgyw8q1"]
+[gd_scene load_steps=27 format=3 uid="uid://bt358hrgyw8q1"]
 
 [ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_cx3nd"]
 [ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_qoc5i"]
+[ext_resource type="StyleBox" uid="uid://cmxcnofnmyr50" path="res://StaticData/Theme/Button/disable_button.tres" id="1_ub0vs"]
 [ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="2_4ey3c"]
 [ext_resource type="Script" uid="uid://ct7fdwuseissd" path="res://Code/Class/MapGenerator.cs" id="2_44xyb"]
 [ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_80os5"]
@@ -55,12 +56,13 @@ bg_color = Color(0.105882, 0.133333, 0.211765, 1)
 [sub_resource type="Theme" id="Theme_s8go2"]
 resource_local_to_scene = true
 Button/colors/font_color = Color(0.105882, 0.133333, 0.211765, 1)
-Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_disabled_color = Color(0.333333, 0.396078, 0.560784, 1)
 Button/colors/font_focus_color = Color(0.105882, 0.133333, 0.211765, 1)
 Button/colors/font_hover_color = Color(0.334784, 0.394638, 0.562812, 1)
 Button/colors/font_hover_pressed_color = Color(0.105882, 0.133333, 0.211765, 1)
 Button/colors/font_pressed_color = Color(0.105882, 0.133333, 0.211765, 1)
 Button/font_sizes/font_size = 40
+Button/styles/disabled = ExtResource("1_ub0vs")
 Button/styles/focus = SubResource("StyleBoxEmpty_mepea")
 Button/styles/hover = ExtResource("1_qoc5i")
 Button/styles/normal = ExtResource("2_4ey3c")
@@ -126,15 +128,14 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2464.0
-offset_top = -200.0
-offset_right = -1714.0
-offset_bottom = -79.0
+offset_left = -2460.0
+offset_top = -203.0
+offset_right = -1540.0
+offset_bottom = -82.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
 theme_override_constants/separation = 100
-metadata/_edit_lock_ = true
 
 [node name="Exit" type="Button" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
@@ -148,6 +149,13 @@ layout_mode = 2
 text = "返回主菜单"
 script = ExtResource("4_7fjhj")
 scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
+
+[node name="Confirm" type="Button" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "确认出生点"
+script = ExtResource("4_7fjhj")
+metadata/_edit_lock_ = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="NinePatchRect"]
 layout_mode = 0
@@ -266,6 +274,17 @@ metadata/_edit_lock_ = true
 
 [node name="SoundEffect" type="AudioStreamPlayer" parent="NinePatchRect/InformationPad"]
 max_polyphony = 10000
+
+[node name="Label" type="Label" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 67.0
+offset_top = 1133.0
+offset_right = 779.0
+offset_bottom = 1199.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "⚠️ 禁止在缩放状态更改点"
 
 [connection signal="drag_ended" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/Knob" method="ExitDragState"]
 [connection signal="drag_started" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/Knob" method="EnterDragState"]

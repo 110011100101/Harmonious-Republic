@@ -136,6 +136,7 @@ public partial class TouchLocatingPad : Area2D
 		if (subViewport.HasNode("ScalePoint"))
 		{
 			subViewport.GetNode<Sprite2D>("ScalePoint").Position = offset;
+			subViewport.GetNode<Sprite2D>("MapGenerator/map/SelectRange").Position = offset / 0.156f;
 		}
 		else
 		{
@@ -145,15 +146,28 @@ public partial class TouchLocatingPad : Area2D
 				Texture = GD.Load<Texture2D>(PointTexturePath),
 				Position = offset
 			});
+
+			subViewport.GetNode<Node2D>("MapGenerator/map").AddChild(new Sprite2D() 
+			{
+				Name = "SelectRange",
+				Texture = GD.Load<Texture2D>("res://Assets/Texture/default/SelectRange.png"),
+				Scale = new Vector2(3f, 3f),
+				Position = offset / 0.156f
+			});
 		}
+		GD.Print(offset);
 
 		// 更新对应单元格信息
-		GetNode<InformationPad>("../InformationPad").cellPosition = (Vector2I)(offset / (1000 / GetNode<Data>("/root/Data").plateSize));
+		Vector2I cell = (Vector2I)(offset / (1000 / GetNode<Data>("/root/Data").plateSize));
+
+		GetNode<InformationPad>("../InformationPad").cellPosition = cell;
+		GetNode<Data>("/root/Data").startLocation = cell;
+		GetNode<Button>("../HBoxContainer/Confirm").Disabled = false;
 		GetNode<InformationPad>("../InformationPad").ChangeText(0f);
 
 		// 更新缩放基点
 		subViewport.GetNode<Node2D>("MapGenerator").Position = offset;
-		subViewport.GetNode<Node2D>("MapGenerator").GetChild<TileMapLayer>(0).Position = -offset;
+		subViewport.GetNode<Node2D>("MapGenerator").GetNode<TileMapLayer>("map").Position = -offset;
 	}
 
 	private void RemoveScalePoint()
@@ -164,16 +178,19 @@ public partial class TouchLocatingPad : Area2D
 			
 			// 重置单元格信息
 			GetNode<InformationPad>("../InformationPad").cellPosition = new Vector2I(0, 0);
+			GetNode<Data>("/root/Data").startLocation = new Vector2I(0, 0);
+			GetNode<Button>("../HBoxContainer/Confirm").Disabled = true;
 			GetNode<InformationPad>("../InformationPad").ChangeText(0f);
 		}
 
 		if (subViewport.HasNode("ScalePoint"))
 		{
 			subViewport.RemoveChild(subViewport.GetNode<Sprite2D>("ScalePoint"));
+			subViewport.GetNode<TileMapLayer>("MapGenerator/map").RemoveChild(subViewport.GetNode<Sprite2D>("MapGenerator/map/SelectRange"));
 		}
 		
 		// 重置缩放基点
 		subViewport.GetNode<Node2D>("MapGenerator").Position = new Vector2(0, 0);
-		subViewport.GetNode<Node2D>("MapGenerator").GetChild<TileMapLayer>(0).Position = new Vector2(0, 0);
+		subViewport.GetNode<Node2D>("MapGenerator").GetNode<TileMapLayer>("map").Position = new Vector2(0, 0);
 	}
 }
