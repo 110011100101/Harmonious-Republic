@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bt358hrgyw8q1"]
+[gd_scene load_steps=28 format=3 uid="uid://bt358hrgyw8q1"]
 
 [ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_cx3nd"]
 [ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_qoc5i"]
@@ -8,6 +8,7 @@
 [ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_80os5"]
 [ext_resource type="TileSet" uid="uid://c8a0kno7337ss" path="res://Assets/TileSet/default.tres" id="3_a47p6"]
 [ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/Button/ChangeSceneButton.cs" id="4_7fjhj"]
+[ext_resource type="Script" uid="uid://dp2or2ioq3iq1" path="res://Code/Class/Button/ConfirmButton.cs" id="7_ode3n"]
 [ext_resource type="Script" uid="uid://g07pc2d364tm" path="res://Code/Class/Knob.cs" id="8_4ey3c"]
 [ext_resource type="Script" uid="uid://be4okq5hrpfwl" path="res://Code/Class/TouchLocatingPad.cs" id="8_mepea"]
 [ext_resource type="Script" uid="uid://2surxxxqr072" path="res://Code/Class/Bar/KnboBar.cs" id="9_80os5"]
@@ -154,7 +155,8 @@ scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
 layout_mode = 2
 disabled = true
 text = "确认出生点"
-script = ExtResource("4_7fjhj")
+script = ExtResource("7_ode3n")
+scenePath = "res://StaticData/Scene/Menu/LoadingGameMenu.tscn"
 metadata/_edit_lock_ = true
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="NinePatchRect"]

@@ -136,7 +136,7 @@ public partial class TouchLocatingPad : Area2D
 		if (subViewport.HasNode("ScalePoint"))
 		{
 			subViewport.GetNode<Sprite2D>("ScalePoint").Position = offset;
-			subViewport.GetNode<Sprite2D>("MapGenerator/map/SelectRange").Position = offset / 0.156f;
+			subViewport.GetNode<Sprite2D>("MapGenerator/map/SelectRange").Position = (Vector2I)((offset / (1000 / GetNode<Data>("/root/Data").plateSize)) * 64f);
 		}
 		else
 		{
@@ -152,10 +152,11 @@ public partial class TouchLocatingPad : Area2D
 				Name = "SelectRange",
 				Texture = GD.Load<Texture2D>("res://Assets/Texture/default/SelectRange.png"),
 				Scale = new Vector2(3f, 3f),
-				Position = offset / 0.156f
+				Position = (Vector2I)((offset / (1000 / GetNode<Data>("/root/Data").plateSize)) * 64f)
 			});
 		}
-		GD.Print(offset);
+		GD.Print(offset / 0.156f);
+		GD.Print((Vector2I)((offset / (1000 / GetNode<Data>("/root/Data").plateSize)) * 64f));
 
 		// 更新对应单元格信息
 		Vector2I cell = (Vector2I)(offset / (1000 / GetNode<Data>("/root/Data").plateSize));

@@ -65,7 +65,10 @@ namespace RoseIsland.CustomClass
         public Matrix<T> AddMatrix(Matrix<T> matrix)
         {
             if (this.GetSize() != matrix.GetSize())
+            {
                 throw new ArgumentException("Matrices must be of the same size.");
+                throw new ArgumentException("矩阵的大小必须相同");
+            }
 
             int size = GetSize();
             T[,] result = new T[size, size];
@@ -90,7 +93,10 @@ namespace RoseIsland.CustomClass
         public Matrix<T> SubtractMatrix(Matrix<T> matrix)
         {
             if (this.GetSize() != matrix.GetSize())
+            {
                 throw new ArgumentException("Matrices must be of the same size.");
+                throw new ArgumentException("矩阵的大小必须相同");
+            }
 
             int size = GetSize();
             T[,] result = new T[size, size];
@@ -115,7 +121,10 @@ namespace RoseIsland.CustomClass
         public Matrix<T> MultiplyMatrix(Matrix<T> matrix)
         {
             if (this.GetSize() != matrix.GetSize())
+            {
                 throw new ArgumentException("Matrices must be of the same size.");
+                throw new ArgumentException("矩阵的大小必须相同");
+            }
 
             int size = GetSize();
             T[,] result = new T[size, size];
@@ -145,7 +154,10 @@ namespace RoseIsland.CustomClass
         public Matrix<T> DivideMatrix(Matrix<T> matrix)
         {
             if (this.GetSize() != matrix.GetSize())
+            {
                 throw new ArgumentException("Matrices must be of the same size.");
+                throw new ArgumentException("矩阵的大小必须相同");
+            }
 
             int size = GetSize();
             T[,] result = new T[size, size];
@@ -226,6 +238,18 @@ namespace RoseIsland.CustomClass
             }
 
             return true;
+        }
+
+        public void Print()
+        {
+            for (int i = 0; i < _matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < _matrix.GetLength(1); j++)
+                {
+                    GD.Print(_matrix[i, j]);
+                }
+                GD.Print("\n");
+            }
         }
     }
 }

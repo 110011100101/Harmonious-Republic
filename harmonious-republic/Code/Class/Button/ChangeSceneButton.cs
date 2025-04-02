@@ -10,7 +10,7 @@ public partial class ChangeSceneButton : Button, IChangeScene
         ChangeScene(GD.Load<PackedScene>(scenePath));
     }
 
-    public void ChangeScene(PackedScene scene)
+    public virtual void ChangeScene(PackedScene scene)
 	{
 		GetTree().ChangeSceneToPacked(scene);
 	}

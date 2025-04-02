@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0wkaku020ub1"]
+
+[ext_resource type="PackedScene" uid="uid://dgrmdp6drkgkr" path="res://StaticData/Scene/UI/LoadingGameMenu/LoadingGameMenuUIGroup.tscn" id="1_m7puy"]
+
+[node name="LoadingGameMenu" type="Node2D"]
+
+[node name="LoadingGameMenuUiGroup" parent="." instance=ExtResource("1_m7puy")]

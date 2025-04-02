@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SetUpBlockNumber : SpinBox
+public partial class SetUpPlateSize : SpinBox
 {
     public void _UpdateMapSize(float value)
     {
