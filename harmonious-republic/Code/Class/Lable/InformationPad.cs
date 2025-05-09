@@ -9,11 +9,9 @@ public partial class InformationPad : RichTextLabel
     [Export] public int plateSize {get; set;}
     [Export] public Vector2I cellPosition {get; set;}
     [Export] public int cellHeight {get; set;}
+	[Export] public float cellHumidity {get; set;}
+	[Export] public float cellTemperature {get; set;}
     [Export] public EnumMaterial cellMaterial {get; set;}
-    public Matrix<int> heightMap {get; set;}
-    public Matrix<float> humidityMap {get; set;}
-    public Matrix<float> temperatureMap {get; set;}
-    public Matrix<int> environmentMap {get; set;}
     // [Export] public string ;
 
 	public override void _Ready()
@@ -34,8 +32,10 @@ public partial class InformationPad : RichTextLabel
 
     public void ChangeText(float value)
 	{
-		cellHeight = heightMap.GetValue(cellPosition);
-		cellMaterial = (EnumMaterial)environmentMap.GetValue(cellPosition);
+		cellHeight = (int)GetNode<Data>("/root/Data").informationMaps[cellPosition].X;
+		cellHumidity = (int)GetNode<Data>("/root/Data").informationMaps[cellPosition].Y;
+		cellTemperature = (int)GetNode<Data>("/root/Data").informationMaps[cellPosition].Z;
+		cellMaterial = GetNode<Data>("/root/Data").environmentMap[cellPosition];
 
 		VisibleRatio = 0;
 		Clear();
@@ -44,6 +44,8 @@ public partial class InformationPad : RichTextLabel
 		AddText($"\n缩放比: {GetNode<Node2D>("../SubViewportContainer/SubViewport/MapGenerator").Scale.X}");
 		AddText($"\n\ncell坐标: {cellPosition}");
 		AddText($"\ncell高度: {cellHeight}");
+		AddText($"\ncell湿度: {cellHumidity}");
+		AddText($"\ncell温度: {cellTemperature}");
 		AddText($"\ncell环境: {cellMaterial}");
 	}
 

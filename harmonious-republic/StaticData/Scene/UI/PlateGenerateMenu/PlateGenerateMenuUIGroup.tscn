@@ -1,105 +1,21 @@
-[gd_scene load_steps=28 format=3 uid="uid://bt358hrgyw8q1"]
+[gd_scene load_steps=12 format=3 uid="uid://bt358hrgyw8q1"]
 
-[ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_cx3nd"]
-[ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_qoc5i"]
-[ext_resource type="StyleBox" uid="uid://cmxcnofnmyr50" path="res://StaticData/Theme/Button/disable_button.tres" id="1_ub0vs"]
-[ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="2_4ey3c"]
+[ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_mepea"]
 [ext_resource type="Script" uid="uid://ct7fdwuseissd" path="res://Code/Class/MapGenerator.cs" id="2_44xyb"]
-[ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_80os5"]
 [ext_resource type="TileSet" uid="uid://c8a0kno7337ss" path="res://Assets/TileSet/default.tres" id="3_a47p6"]
 [ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/Button/ChangeSceneButton.cs" id="4_7fjhj"]
+[ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="5_ode3n"]
 [ext_resource type="Script" uid="uid://dp2or2ioq3iq1" path="res://Code/Class/Button/ConfirmButton.cs" id="7_ode3n"]
-[ext_resource type="Script" uid="uid://g07pc2d364tm" path="res://Code/Class/Knob.cs" id="8_4ey3c"]
 [ext_resource type="Script" uid="uid://be4okq5hrpfwl" path="res://Code/Class/TouchLocatingPad.cs" id="8_mepea"]
-[ext_resource type="Script" uid="uid://2surxxxqr072" path="res://Code/Class/Bar/KnboBar.cs" id="9_80os5"]
 [ext_resource type="Script" uid="uid://vn8ix21dka8u" path="res://Code/Class/Lable/InformationPad.cs" id="11_s8go2"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mepea"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_80os5"]
-atlas = ExtResource("1_cx3nd")
-region = Rect2(195, 904, 19, 19)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mepea"]
-atlas = ExtResource("1_cx3nd")
-region = Rect2(195, 905, 19, 18)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s8go2"]
-atlas = ExtResource("1_cx3nd")
-region = Rect2(195, 904, 19, 19)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ub0vs"]
-atlas = ExtResource("1_cx3nd")
-region = Rect2(549, 1525, 7, 5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoc5i"]
-content_margin_top = 5.0
-bg_color = Color(0.95, 0.95, 0.95, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80os5"]
-bg_color = Color(0.105882, 0.133333, 0.211765, 1)
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mepea"]
-bg_color = Color(0.458824, 0.141176, 0.219608, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub0vs"]
-content_margin_left = 70.0
-content_margin_top = 70.0
-bg_color = Color(0.054902, 0.054902, 0.054902, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8go2"]
-bg_color = Color(0.105882, 0.133333, 0.211765, 1)
-
-[sub_resource type="Theme" id="Theme_s8go2"]
-resource_local_to_scene = true
-Button/colors/font_color = Color(0.105882, 0.133333, 0.211765, 1)
-Button/colors/font_disabled_color = Color(0.333333, 0.396078, 0.560784, 1)
-Button/colors/font_focus_color = Color(0.105882, 0.133333, 0.211765, 1)
-Button/colors/font_hover_color = Color(0.334784, 0.394638, 0.562812, 1)
-Button/colors/font_hover_pressed_color = Color(0.105882, 0.133333, 0.211765, 1)
-Button/colors/font_pressed_color = Color(0.105882, 0.133333, 0.211765, 1)
-Button/font_sizes/font_size = 40
-Button/styles/disabled = ExtResource("1_ub0vs")
-Button/styles/focus = SubResource("StyleBoxEmpty_mepea")
-Button/styles/hover = ExtResource("1_qoc5i")
-Button/styles/normal = ExtResource("2_4ey3c")
-Button/styles/pressed = ExtResource("3_80os5")
-HSlider/icons/grabber = SubResource("AtlasTexture_80os5")
-HSlider/icons/grabber_disabled = SubResource("AtlasTexture_mepea")
-HSlider/icons/grabber_highlight = SubResource("AtlasTexture_s8go2")
-HSlider/icons/tick = SubResource("AtlasTexture_ub0vs")
-HSlider/styles/slider = SubResource("StyleBoxFlat_qoc5i")
-ProgressBar/styles/background = SubResource("StyleBoxFlat_80os5")
-ProgressBar/styles/fill = SubResource("StyleBoxFlat_mepea")
-RichTextLabel/colors/default_color = Color(0, 0.929412, 0.231373, 1)
-RichTextLabel/constants/line_separation = 5
-RichTextLabel/font_sizes/bold_font_size = 60
-RichTextLabel/font_sizes/bold_italics_font_size = 60
-RichTextLabel/font_sizes/italics_font_size = 60
-RichTextLabel/font_sizes/mono_font_size = 60
-RichTextLabel/font_sizes/normal_font_size = 60
-RichTextLabel/styles/normal = SubResource("StyleBoxFlat_ub0vs")
-TextEdit/colors/font_readonly_color = Color(0, 0.929412, 0.231373, 1)
-TextEdit/constants/line_spacing = 5
-TextEdit/font_sizes/font_size = 60
-TextEdit/styles/focus = SubResource("StyleBoxFlat_ub0vs")
-TextEdit/styles/normal = SubResource("StyleBoxFlat_ub0vs")
-TextEdit/styles/read_only = SubResource("StyleBoxFlat_ub0vs")
-TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
-TooltipLabel/font_sizes/font_size = 40
-TooltipLabel/styles/normal = SubResource("StyleBoxFlat_s8go2")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_44xyb"]
-atlas = ExtResource("1_cx3nd")
-region = Rect2(56, 1136, 136, 192)
+atlas = ExtResource("5_ode3n")
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ey3c"]
-atlas = ExtResource("1_cx3nd")
-region = Rect2(368, 32, 81, 80)
+atlas = ExtResource("5_ode3n")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qoc5i"]
 size = Vector2(300, 300)
@@ -112,7 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme = SubResource("Theme_s8go2")
+theme = ExtResource("1_mepea")
 metadata/_edit_lock_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -129,10 +45,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -2460.0
-offset_top = -203.0
-offset_right = -1540.0
-offset_bottom = -82.0
+offset_left = -2495.0
+offset_top = -236.0
+offset_right = -527.0
+offset_bottom = -85.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_filter = 2
@@ -140,7 +56,7 @@ theme_override_constants/separation = 100
 
 [node name="Exit" type="Button" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
-text = "退出
+text = "返回上一级
 "
 script = ExtResource("4_7fjhj")
 scenePath = "res://StaticData/Scene/Menu/PlateConfigMenu.tscn"
@@ -182,11 +98,10 @@ tileSet = ExtResource("3_a47p6")
 energy = 0.5
 
 [node name="TouchLocatingPad" type="Area2D" parent="NinePatchRect"]
-position = Vector2(2112, 1192)
+position = Vector2(2088, 1196)
 script = ExtResource("8_mepea")
 PointTexturePath = "res://Assets/UI_Texture/point.png"
 subViewportPath = "../SubViewportContainer/SubViewport"
-metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/TouchLocatingPad"]
 clip_contents = true
@@ -197,63 +112,6 @@ texture = SubResource("AtlasTexture_4ey3c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NinePatchRect/TouchLocatingPad"]
 position = Vector2(150, 150)
 shape = SubResource("RectangleShape2D_qoc5i")
-
-[node name="Panel" type="Panel" parent="NinePatchRect"]
-layout_mode = 0
-offset_left = 1920.0
-offset_top = 1232.0
-offset_right = 1960.0
-offset_bottom = 1272.0
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Knob" type="HSlider" parent="NinePatchRect/Panel"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.237
-anchor_top = 0.237
-anchor_right = 0.237
-anchor_bottom = 0.237
-offset_left = -9.48
-offset_top = -9.48
-offset_right = 9.52
-offset_bottom = 9.52
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(5, 5)
-pivot_offset = Vector2(9.5, 9.5)
-tooltip_text = "缩放地图
-用鼠标缓缓画圆
-
-旋转只与移动的正负有关, 与距
-离无关, 若是想快速获得更大的缩放, 应该增加移动的
-时间而不是距离
-
-人话: 慢慢移鼠标, 缩放的速度就那个速度, 快不了
-
-不过要是你嫌麻烦,可以在右边那个触控板上用滚轮缩
-放,按住shift加速,为什么不把这个提示写在触控板上
-呢,因为触控板截断了鼠标事件,所以显示不出tooltip"
-mouse_default_cursor_shape = 2
-step = 0.01
-scrollable = false
-script = ExtResource("8_4ey3c")
-
-[node name="ProgressBar" type="ProgressBar" parent="NinePatchRect/Panel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.225
-anchor_top = -1.625
-anchor_right = 0.225
-anchor_bottom = -1.625
-offset_left = -75.0
-offset_top = -15.0
-offset_right = 75.0
-offset_bottom = 15.0
-mouse_filter = 2
-show_percentage = false
-script = ExtResource("9_80os5")
 
 [node name="InformationPad" type="RichTextLabel" parent="NinePatchRect"]
 layout_mode = 0
@@ -283,13 +141,7 @@ offset_left = 67.0
 offset_top = 1133.0
 offset_right = 779.0
 offset_bottom = 1199.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_color = Color(0.862745, 0.933333, 0.980392, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
 text = "⚠️ 禁止在缩放状态更改点"
-
-[connection signal="drag_ended" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/Knob" method="ExitDragState"]
-[connection signal="drag_started" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/Knob" method="EnterDragState"]
-[connection signal="value_changed" from="NinePatchRect/Panel/Knob" to="NinePatchRect/SubViewportContainer/SubViewport/MapGenerator" method="UpdateMapScale"]
-[connection signal="value_changed" from="NinePatchRect/Panel/Knob" to="NinePatchRect/Panel/ProgressBar" method="UpdateValue"]
-[connection signal="value_changed" from="NinePatchRect/Panel/Knob" to="NinePatchRect/InformationPad" method="ChangeText"]

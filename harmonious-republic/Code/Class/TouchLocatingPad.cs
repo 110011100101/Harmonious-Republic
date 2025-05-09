@@ -87,29 +87,6 @@ public partial class TouchLocatingPad : Area2D
 		{
 			RemoveScalePoint();
 		}
-
-		if (eventMouseButton.ButtonIndex == MouseButton.WheelUp && eventMouseButton.Pressed)
-		{
-			if (Input.IsKeyPressed(Key.Shift))
-			{
-				GetNode<HSlider>("../Panel/Knob").Value += 0.5f;
-			}
-			else
-			{
-				GetNode<HSlider>("../Panel/Knob").Value += 0.1f;
-			}
-		}
-		else if (eventMouseButton.ButtonIndex == MouseButton.WheelDown && eventMouseButton.Pressed)
-		{
-			if (Input.IsKeyPressed(Key.Shift))
-			{
-				GetNode<HSlider>("../Panel/Knob").Value -= 0.5f;
-			}
-			else
-			{
-				GetNode<HSlider>("../Panel/Knob").Value -= 0.1f;
-			}
-		}
 	}
 
 	private void AddOrUpdateScalePoint()

@@ -11,8 +11,8 @@ public partial class KnboBar : ProgressBar
 	{
 	}
 
-	public void UpdateValue(float value)
-	{
-		Value = value;
-	}
+    public override void _ValueChanged(double newValue)
+    {
+		
+    }
 }

@@ -1,29 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://cov78r4l27hsm"]
+[gd_scene load_steps=8 format=3 uid="uid://cov78r4l27hsm"]
 
-[ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_laf1l"]
-[ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="1_ptofr"]
-[ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_siu2b"]
-[ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_hcnr4"]
+[ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_uqm2j"]
+[ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="4_vhxcr"]
 [ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/Button/ChangeSceneButton.cs" id="5_vhxcr"]
 [ext_resource type="Script" uid="uid://cjhqjbjovdks1" path="res://Code/Class/Button/QuirGameButton.cs" id="7_fruq7"]
+[ext_resource type="Texture2D" uid="uid://q2jnjmco30ew" path="res://Assets/UI_Texture/同调共和LOGO-export.png" id="7_kk1wt"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_siu2b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fruq7"]
+atlas = ExtResource("4_vhxcr")
+region = Rect2(0, 0, 64, 64)
+filter_clip = true
 
-[sub_resource type="Theme" id="Theme_siu2b"]
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
-Button/colors/font_hover_color = Color(0.350333, 0.629765, 1, 1)
-Button/colors/font_pressed_color = Color(0, 0.489272, 0.969826, 1)
-Button/constants/h_separation = 40
-Button/font_sizes/font_size = 100
-Button/styles/focus = SubResource("StyleBoxEmpty_siu2b")
-Button/styles/hover = ExtResource("1_siu2b")
-Button/styles/normal = ExtResource("1_ptofr")
-Button/styles/pressed = ExtResource("3_hcnr4")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ptofr"]
-atlas = ExtResource("1_laf1l")
-region = Rect2(32, 1120, 184, 280)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk1wt"]
+atlas = ExtResource("7_kk1wt")
+region = Rect2(1480, 3400, 12490, 3400)
 
 [node name="MainMenuUiGroup" type="Control"]
 layout_mode = 3
@@ -33,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.000521025
-theme = SubResource("Theme_siu2b")
+theme = ExtResource("1_uqm2j")
 
 [node name="Menu" type="NinePatchRect" parent="."]
 layout_mode = 1
@@ -42,20 +32,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -384.0
-offset_top = -415.0
-offset_right = 384.0
-offset_bottom = 413.0
+offset_left = -1330.0
+offset_top = -850.0
+offset_right = 1330.0
+offset_bottom = 850.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_ptofr")
-region_rect = Rect2(0, 0, 184, 280)
-patch_margin_left = 16
-patch_margin_top = 16
-patch_margin_right = 16
-patch_margin_bottom = 24
+texture = SubResource("AtlasTexture_fruq7")
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+layout_mode = 0
+offset_left = 716.855
+offset_top = 278.313
+offset_right = 13206.9
+offset_bottom = 3678.31
+scale = Vector2(0.1, 0.1)
+texture = SubResource("AtlasTexture_kk1wt")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 1
@@ -64,26 +58,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -315.09
+offset_top = -93.5
+offset_right = 314.91
+offset_bottom = 439.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 40
 
 [node name="CratePlate" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
-text = "Crate Plate"
+text = "创建星球"
 script = ExtResource("5_vhxcr")
 scenePath = "res://StaticData/Scene/Menu/PlateConfigMenu.tscn"
 
 [node name="Setting" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
-text = "Setting"
+text = "设置"
 script = ExtResource("5_vhxcr")
 
 [node name="Exit" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
-text = "Exit"
+text = "关闭整个游戏"
 script = ExtResource("7_fruq7")

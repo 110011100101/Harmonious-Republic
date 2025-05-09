@@ -1,42 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxu41doybqic2"]
+[gd_scene load_steps=9 format=3 uid="uid://dxu41doybqic2"]
 
-[ext_resource type="StyleBox" uid="uid://dbma8cdx34egk" path="res://StaticData/Theme/TabContainer/tab_hover.tres" id="1_1x4kv"]
-[ext_resource type="StyleBox" uid="uid://babn1lcrws7x8" path="res://StaticData/Theme/TabContainer/panel.tres" id="1_etx8a"]
-[ext_resource type="Texture2D" uid="uid://dtkjmxkqhxn0f" path="res://Assets/UI_Texture/SpriteSheet.png" id="1_hq3ti"]
-[ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_u2qls"]
-[ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="2_1aolh"]
-[ext_resource type="StyleBox" uid="uid://dejb4fr0qx5il" path="res://StaticData/Theme/TabContainer/tab_selected.tres" id="2_etx8a"]
-[ext_resource type="StyleBox" uid="uid://dwwckdhdtgueq" path="res://StaticData/Theme/TabContainer/tab_unselected.tres" id="3_6gjhe"]
-[ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_qe8la"]
+[ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_b8ma6"]
+[ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="8_1qyl6"]
 [ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/Button/ChangeSceneButton.cs" id="9_qe8la"]
 [ext_resource type="SpriteFrames" uid="uid://b2pcremokbpcb" path="res://Assets/Animation/120fpsEarthRolling.tres" id="9_t4uqs"]
 [ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/Class/Lable/PlateNameLable.cs" id="10_qgpoj"]
 [ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/Class/Setup/SetUpPlateSize.cs" id="11_t4uqs"]
 [ext_resource type="Script" uid="uid://cpx0b0mqgvuku" path="res://Code/Class/Setup/SetUpSubdivisionFactor.cs" id="12_1qyl6"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qgpoj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2qls"]
-
-[sub_resource type="Theme" id="Theme_hq3ti"]
-Button/colors/font_focus_color = Color(0.87451, 0.87451, 0.87451, 1)
-Button/font_sizes/font_size = 70
-Button/styles/focus = SubResource("StyleBoxEmpty_qgpoj")
-Button/styles/hover = ExtResource("1_u2qls")
-Button/styles/normal = ExtResource("2_1aolh")
-Button/styles/pressed = ExtResource("3_qe8la")
-Label/font_sizes/font_size = 90
-LineEdit/font_sizes/font_size = 70
-TabContainer/font_sizes/font_size = 70
-TabContainer/styles/panel = ExtResource("1_etx8a")
-TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_u2qls")
-TabContainer/styles/tab_hovered = ExtResource("1_1x4kv")
-TabContainer/styles/tab_selected = ExtResource("2_etx8a")
-TabContainer/styles/tab_unselected = ExtResource("3_6gjhe")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_hq3ti"]
-atlas = ExtResource("1_hq3ti")
-region = Rect2(56, 1136, 136, 192)
+atlas = ExtResource("8_1qyl6")
+region = Rect2(0, 0, 64, 64)
 
 [node name="PlateConfigUiGroup" type="Control"]
 layout_mode = 3
@@ -45,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_hq3ti")
+theme = ExtResource("1_b8ma6")
 metadata/_edit_lock_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
@@ -126,6 +100,7 @@ offset_bottom = 307.0
 theme_override_constants/separation = 60
 
 [node name="PlateSize" type="HBoxContainer" parent="NinePatchRect/TabContainer/Plate/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 
@@ -139,6 +114,7 @@ layout_mode = 2
 max_value = 1000.0
 value = 100.0
 suffix = "block"
+select_all_on_focus = true
 script = ExtResource("11_t4uqs")
 metadata/_edit_use_anchors_ = true
 
@@ -157,6 +133,7 @@ max_value = 1000.0
 value = 1.0
 update_on_text_changed = true
 prefix = "1  : "
+select_all_on_focus = true
 script = ExtResource("12_1qyl6")
 metadata/_edit_use_anchors_ = true
 
@@ -188,7 +165,7 @@ scenePath = "res://StaticData/Scene/Menu/PlateGenerateMenu.tscn"
 
 [node name="Exit" type="Button" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
-text = "退出
+text = "退回主菜单
 "
 script = ExtResource("9_qe8la")
 scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"

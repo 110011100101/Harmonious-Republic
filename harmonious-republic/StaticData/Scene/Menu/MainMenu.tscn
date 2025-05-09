@@ -1,18 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://duukpefp0fctq"]
+[gd_scene load_steps=2 format=3 uid="uid://duukpefp0fctq"]
 
-[ext_resource type="VideoStream" uid="uid://b463cix8xif63" path="res://StaticData/Video/星空视频.ogv" id="1_betjq"]
 [ext_resource type="PackedScene" uid="uid://cov78r4l27hsm" path="res://StaticData/Scene/UI/MainMenu/MainMenuUIGroup.tscn" id="2_pt6gp"]
 
 [node name="MainMenu" type="Node2D"]
-metadata/_edit_lock_ = true
-
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
-offset_right = 4096.0
-offset_bottom = 2304.0
-scale = Vector2(0.7, 0.7)
-stream = ExtResource("1_betjq")
-autoplay = true
-loop = true
 metadata/_edit_lock_ = true
 
 [node name="MainMenuUiGroup" parent="." instance=ExtResource("2_pt6gp")]

@@ -248,7 +248,7 @@ namespace RoseIsland.CustomClass
                 {
                     GD.Print(_matrix[i, j]);
                 }
-                GD.Print("\n");
+                GD.Print("\n"); 
             }
         }
     }

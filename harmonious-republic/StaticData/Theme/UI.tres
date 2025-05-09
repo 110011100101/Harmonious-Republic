@@ -1,0 +1,98 @@
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://dwmc7vfl1gjyc"]
+
+[ext_resource type="StyleBox" uid="uid://i0akmerejhny" path="res://StaticData/Theme/Button/hover_button.tres" id="1_2x3ix"]
+[ext_resource type="StyleBox" uid="uid://bbxbtn5lqcbp8" path="res://StaticData/Theme/Button/normal_button.tres" id="2_nrt5v"]
+[ext_resource type="StyleBox" uid="uid://bfvu1kuy36n2m" path="res://StaticData/Theme/Button/pressed_button.tres" id="3_drb2n"]
+[ext_resource type="StyleBox" uid="uid://babn1lcrws7x8" path="res://StaticData/Theme/TabContainer/panel.tres" id="4_smvof"]
+[ext_resource type="StyleBox" uid="uid://dbma8cdx34egk" path="res://StaticData/Theme/TabContainer/tab_hover.tres" id="5_mqlr7"]
+[ext_resource type="StyleBox" uid="uid://dejb4fr0qx5il" path="res://StaticData/Theme/TabContainer/tab_selected.tres" id="6_rbo1q"]
+[ext_resource type="StyleBox" uid="uid://dwwckdhdtgueq" path="res://StaticData/Theme/TabContainer/tab_unselected.tres" id="7_4ryrd"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t4uqs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80os5"]
+atlas = SubResource("CompressedTexture2D_t4uqs")
+region = Rect2(195, 904, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mepea"]
+atlas = SubResource("CompressedTexture2D_t4uqs")
+region = Rect2(195, 905, 19, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8go2"]
+atlas = SubResource("CompressedTexture2D_t4uqs")
+region = Rect2(195, 904, 19, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub0vs"]
+atlas = SubResource("CompressedTexture2D_t4uqs")
+region = Rect2(549, 1525, 7, 5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qoc5i"]
+content_margin_top = 5.0
+bg_color = Color(0.95, 0.95, 0.95, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80os5"]
+bg_color = Color(0.105882, 0.133333, 0.211765, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mepea"]
+bg_color = Color(0.458824, 0.141176, 0.219608, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub0vs"]
+content_margin_left = 70.0
+content_margin_top = 70.0
+bg_color = Color(0.890196, 0.937255, 0.992157, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u2qls"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8go2"]
+bg_color = Color(0.105882, 0.133333, 0.211765, 1)
+
+[resource]
+Button/colors/font_color = Color(0.364706, 0.529412, 0.658824, 1)
+Button/colors/font_focus_color = Color(0.364706, 0.529412, 0.658824, 1)
+Button/colors/font_hover_color = Color(0.350333, 0.629765, 1, 1)
+Button/colors/font_pressed_color = Color(0, 0.489272, 0.969826, 1)
+Button/constants/h_separation = 40
+Button/font_sizes/font_size = 70
+Button/styles/hover = ExtResource("1_2x3ix")
+Button/styles/normal = ExtResource("2_nrt5v")
+Button/styles/pressed = ExtResource("3_drb2n")
+HSlider/icons/grabber = SubResource("AtlasTexture_80os5")
+HSlider/icons/grabber_disabled = SubResource("AtlasTexture_mepea")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_s8go2")
+HSlider/icons/tick = SubResource("AtlasTexture_ub0vs")
+HSlider/styles/slider = SubResource("StyleBoxFlat_qoc5i")
+Label/font_sizes/font_size = 90
+LineEdit/font_sizes/font_size = 70
+ProgressBar/styles/background = SubResource("StyleBoxFlat_80os5")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_mepea")
+RichTextLabel/colors/default_color = Color(0.364706, 0.529412, 0.658824, 1)
+RichTextLabel/constants/line_separation = 5
+RichTextLabel/font_sizes/bold_font_size = 60
+RichTextLabel/font_sizes/bold_italics_font_size = 60
+RichTextLabel/font_sizes/italics_font_size = 60
+RichTextLabel/font_sizes/mono_font_size = 60
+RichTextLabel/font_sizes/normal_font_size = 60
+RichTextLabel/styles/normal = SubResource("StyleBoxFlat_ub0vs")
+TabContainer/font_sizes/font_size = 70
+TabContainer/styles/panel = ExtResource("4_smvof")
+TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_u2qls")
+TabContainer/styles/tab_hovered = ExtResource("5_mqlr7")
+TabContainer/styles/tab_selected = ExtResource("6_rbo1q")
+TabContainer/styles/tab_unselected = ExtResource("7_4ryrd")
+TextEdit/colors/font_readonly_color = Color(0.364706, 0.529412, 0.658824, 1)
+TextEdit/constants/line_spacing = 5
+TextEdit/font_sizes/font_size = 60
+TextEdit/styles/focus = SubResource("StyleBoxFlat_ub0vs")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_ub0vs")
+TextEdit/styles/read_only = SubResource("StyleBoxFlat_ub0vs")
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipLabel/font_sizes/font_size = 40
+TooltipLabel/styles/normal = SubResource("StyleBoxFlat_s8go2")
