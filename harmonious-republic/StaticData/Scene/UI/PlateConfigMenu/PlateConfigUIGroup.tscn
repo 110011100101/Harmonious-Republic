@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_b8ma6"]
 [ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="8_1qyl6"]
-[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/Class/Button/ChangeSceneButton.cs" id="9_qe8la"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/CutomNode/Button/ChangeSceneButton.cs" id="9_qe8la"]
 [ext_resource type="SpriteFrames" uid="uid://b2pcremokbpcb" path="res://Assets/Animation/120fpsEarthRolling.tres" id="9_t4uqs"]
 [ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/Class/Lable/PlateNameLable.cs" id="10_qgpoj"]
 [ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/Class/Setup/SetUpPlateSize.cs" id="11_t4uqs"]
@@ -34,13 +34,12 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 1400.0
 tab_alignment = 1
-current_tab = 1
+current_tab = 0
 clip_tabs = false
 tab_focus_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Game" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -88,6 +87,7 @@ uppercase = true
 script = ExtResource("10_qgpoj")
 
 [node name="Plate" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -162,6 +162,7 @@ layout_mode = 2
 text = "创建世界"
 script = ExtResource("9_qe8la")
 scenePath = "res://StaticData/Scene/Menu/PlateGenerateMenu.tscn"
+metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
 [node name="Exit" type="Button" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
@@ -169,6 +170,7 @@ text = "退回主菜单
 "
 script = ExtResource("9_qe8la")
 scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
+metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
 [connection signal="text_changed" from="NinePatchRect/TabContainer/Game/SetUpPlateName" to="NinePatchRect/TabContainer/Game/PlateName" method="ChangeText"]
 [connection signal="value_changed" from="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize/SetUpPlateSize" to="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize/SetUpPlateSize" method="_UpdateMapSize"]

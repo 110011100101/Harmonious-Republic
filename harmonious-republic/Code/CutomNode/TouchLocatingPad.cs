@@ -132,8 +132,6 @@ public partial class TouchLocatingPad : Area2D
 				Position = (Vector2I)((offset / (1000 / GetNode<Data>("/root/Data").plateSize)) * 64f)
 			});
 		}
-		GD.Print(offset / 0.156f);
-		GD.Print((Vector2I)((offset / (1000 / GetNode<Data>("/root/Data").plateSize)) * 64f));
 
 		// 更新对应单元格信息
 		Vector2I cell = (Vector2I)(offset / (1000 / GetNode<Data>("/root/Data").plateSize));

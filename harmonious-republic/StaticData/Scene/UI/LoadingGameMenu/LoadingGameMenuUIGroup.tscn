@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgrmdp6drkgkr"]
 
-[ext_resource type="Script" uid="uid://cyn0bq1nj5n6q" path="res://Code/Class/LoadingGame.cs" id="1_mafrn"]
+[ext_resource type="Script" uid="uid://cyn0bq1nj5n6q" path="res://Code/CutomNode/LoadingGame.cs" id="1_mafrn"]
 
 [node name="LoadingGameMenuUiGroup" type="Control"]
 layout_mode = 3

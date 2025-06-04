@@ -11,6 +11,7 @@ public class GenerateHumidityMapUnit : Unit<Dictionary<Vector2I, Vector3>, Dicti
     {
         this.plateSize = plateSize;
     }
+
     public override Dictionary<Vector2I, Vector3> Execute(Dictionary<Vector2I, Vector3> informationMaps)
     {
         NocturneNoise noise = new NocturneNoise();
@@ -19,21 +20,31 @@ public class GenerateHumidityMapUnit : Unit<Dictionary<Vector2I, Vector3>, Dicti
         {
             for (int y = 0; y < plateSize; y++)
             {
-                Vector2I block = new Vector2I(x, y);
+                // 执行逻辑
+                Vector2I block;
+                float noiseValue;
+                float height;
+                float baseHumidity;
+                float humidityValue;
 
-                float noiseValue = noise.GetNoise2D(x, y);
-                float height = informationMaps[block].X;
+                block = new Vector2I(x, y);
+                noiseValue = noise.GetNoise2D(x, y);
+                height = informationMaps[block].X;
+                baseHumidity = (noiseValue + 1) * 50f; // noise[-1, 1] -> [0, 100]
+                humidityValue = baseHumidity - height / 100; // [0, 100] * [0, 1] -> [0, 100]
 
-                float baseHumidity = (noiseValue + 1) * 50f; // noise[-1, 1] -> [0, 100]
+                // 格式化数据
+                Vector3 originalInformation;
+                Vector3 information;
+                float X;
+                float Y;
+                float Z;
 
-                float humidityValue = baseHumidity - height / 100; // [0, 100] * [0, 1] -> [0, 100]
-
-                Vector3 originalInformation = informationMaps[block];
-                float X = originalInformation.X;
-                float Y = humidityValue;
-                float Z = originalInformation.Z;
-                Vector3 information = new Vector3(X, Y, Z);
-
+                originalInformation = informationMaps[block];
+                X = originalInformation.X;
+                Y = humidityValue;
+                Z = originalInformation.Z;
+                information = new Vector3(X, Y, Z);
                 informationMaps[block] = information;
             }
         }

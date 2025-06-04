@@ -13,14 +13,15 @@ public class GenerateHeightMapUnit : Unit<int, Dictionary<Vector2I, Vector3>>
         {
             for (int y = 0; y < plateSize; y++)
             {
-                Vector2I block = new Vector2I(x, y);
+                float height;
+                float noiseValue;
+                Vector2I block;
+                Vector3 information;
 
-                float noiseValue = noise.GetNoise2D(x, y);
-
-                float height = (int)((noiseValue + 1f) * 50f); // noise[-1,1] -> [0, 2] -> [0.00, 100]
-
-                Vector3 information = new Vector3(height, 0, 0);
-
+                block = new Vector2I(x, y);
+                noiseValue = noise.GetNoise2D(x, y);
+                height = (int)((noiseValue + 1f) * 50f); // noise[-1,1] -> [0, 2] -> [0.00, 100]
+                information = new Vector3(height, 0, 0);
                 informationMaps[block] = information;
             }
         }

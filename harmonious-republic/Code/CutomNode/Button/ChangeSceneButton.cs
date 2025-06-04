@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class ChangeSceneButton : Button, IChangeScene
 {
     [Export] private string scenePath;
