@@ -75,7 +75,11 @@ public partial class MapGenerator : Node2D
         }
     }
 
+<<<<<<< HEAD
+    // 没有办法, 这个用不了框架
+=======
     // 没有办法, 这个
+>>>>>>> 8ca785b4bd2b34da06a7055c415504461de41885
     public Block[,,] Generate3DMap(int plateSize)
     {
         Block[,,] map = new Block[plateSize, plateSize, plateSize];

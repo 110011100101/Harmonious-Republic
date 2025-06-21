@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+[gd_scene load_steps=5 format=3 uid="uid://d1shpe7vww7bi"]
+
+[ext_resource type="Script" uid="uid://bp1i73i5f6nb2" path="res://Code/Class/PlayGround.cs" id="1_l8hvh"]
+[ext_resource type="TileSet" uid="uid://c8a0kno7337ss" path="res://Assets/TileSet/default.tres" id="2_f5ktm"]
+[ext_resource type="Script" uid="uid://dlceedp4ri4gh" path="res://Code/Class/Camera/PlayCamera.cs" id="3_qtqf4"]
+[ext_resource type="Script" uid="uid://dpagf8rvajtgg" path="res://Code/Class/MapController.cs" id="4_m8w0o"]
+
+[node name="PlayGround" type="Node2D"]
+script = ExtResource("1_l8hvh")
+tileSet = ExtResource("2_f5ktm")
+
+[node name="PlayCamera" type="Camera2D" parent="."]
+script = ExtResource("3_qtqf4")
+
+[node name="MapController" type="Node2D" parent="."]
+script = ExtResource("4_m8w0o")
+=======
 [gd_scene format=3 uid="uid://d1shpe7vww7bi"]
 
 [node name="PlayGround" type="Node2D"]
+>>>>>>> 8ca785b4bd2b34da06a7055c415504461de41885

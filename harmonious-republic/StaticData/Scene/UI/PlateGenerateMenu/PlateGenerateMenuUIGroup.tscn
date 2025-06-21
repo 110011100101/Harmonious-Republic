@@ -75,7 +75,11 @@ layout_mode = 2
 disabled = true
 text = "确认出生点"
 script = ExtResource("7_ode3n")
+<<<<<<< HEAD
+scenePath = "res://StaticData/Scene/Menu/PlayGround.tscn"
+=======
 scenePath = "res://StaticData/Scene/Menu/LoadingGameMenu.tscn"
+>>>>>>> 8ca785b4bd2b34da06a7055c415504461de41885
 metadata/_custom_type_script = "uid://dp2or2ioq3iq1"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="NinePatchRect"]
