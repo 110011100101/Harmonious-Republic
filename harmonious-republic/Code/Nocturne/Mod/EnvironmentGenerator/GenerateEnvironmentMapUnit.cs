@@ -21,11 +21,11 @@ public class GenerateEnvironmentMapUnit : Unit<Dictionary<Vector2I, Vector3>, Di
             for (int y = 0; y < plateSize; y++)
             {
                 Vector2I block = new Vector2I(x, y);
-                EnumMaterial material = EnumMaterial.Air; // Default material
                 float height = informationMaps[block].X;
                 float humidity = informationMaps[block].Y;
                 float temperature = informationMaps[block].Z;
 
+                EnumMaterial material = EnumMaterial.Air; // Default material
                 // 这个逻辑是基于EnumMaterial的, 除了C#约定你必须在新增材质的时候先引入枚举, 其他方面约等于完全独立
                 // 你可以自由搭配前置的材质包mod(这个材质包是真真正正的材质包,不是纹理材质)
                 if (height <= 45) // 海平面以下

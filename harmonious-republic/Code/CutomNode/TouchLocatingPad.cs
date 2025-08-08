@@ -139,11 +139,7 @@ public partial class TouchLocatingPad : Area2D
 		GetNode<InformationPad>("../InformationPad").cellPosition = cell;
 		GetNode<Data>("/root/Data").startLocation = cell;
 		GetNode<Button>("../HBoxContainer/Confirm").Disabled = false;
-		GetNode<InformationPad>("../InformationPad").ChangeText(0f);
-
-		// 更新缩放基点
-		subViewport.GetNode<Node2D>("MapGenerator").Position = offset;
-		subViewport.GetNode<Node2D>("MapGenerator").GetNode<TileMapLayer>("map").Position = -offset;
+		GetNode<InformationPad>("../InformationPad").ChangeText();
 	}
 
 	private void RemoveScalePoint()
@@ -156,7 +152,7 @@ public partial class TouchLocatingPad : Area2D
 			GetNode<InformationPad>("../InformationPad").cellPosition = new Vector2I(0, 0);
 			GetNode<Data>("/root/Data").startLocation = new Vector2I(0, 0);
 			GetNode<Button>("../HBoxContainer/Confirm").Disabled = true;
-			GetNode<InformationPad>("../InformationPad").ChangeText(0f);
+			GetNode<InformationPad>("../InformationPad").ChangeText();
 		}
 
 		if (subViewport.HasNode("ScalePoint"))

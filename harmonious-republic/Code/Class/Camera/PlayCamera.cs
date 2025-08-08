@@ -1,6 +1,6 @@
 using Godot;
-using System;
 
+// 注意: Camera有独立的设置Position的方法,用于监控位置的变更
 public partial class PlayCamera : Camera2D
 {
 	public float level = 50;
@@ -14,10 +14,10 @@ public partial class PlayCamera : Camera2D
 	public override void _Process(double delta)
 	{
 		// 插值设置层数
-		if (isTargetLevelChanged && Mathf.Abs(targetLevel - level) <= 0.001f)
+		if (isTargetLevelChanged && Mathf.Abs(targetLevel - level) <= 0.01f)
 		{
 			level = targetLevel;
-			GetNode<MapController>("../MapController").UpdateMap(level);
+			GetNode<MapController>("../MapController").UpdateMap(targetLevel);
 			isTargetLevelChanged = false;
 		}
 		else if (level != targetLevel)
@@ -27,6 +27,7 @@ public partial class PlayCamera : Camera2D
 			// 调用那个函数
 			GetNode<MapController>("../MapController").UpdateMap(level);
 		}
+		GetNode<Label>("Label").Text = "Level:" + level;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -90,6 +91,28 @@ public partial class PlayCamera : Camera2D
 				var mouseDelta = mouseMotionEvent.Relative / Zoom;
 				Translate(new Vector2(-mouseDelta.X, -mouseDelta.Y));
 				GetNode<MapController>("../MapController").UpdateMap(level);
+			}
+		}
+
+		if (@event is InputEventKey keyEvent)
+		{
+			switch (keyEvent.Keycode)
+			{
+				case Key.Up:
+					if (keyEvent.Pressed)
+					{
+						Zoom += new Vector2(0.1f, 0.1f);
+						GetNode<MapController>("../MapController").UpdateMap(level);
+					}
+					break;
+
+				case Key.Down:
+					if (keyEvent.Pressed)
+					{
+						Zoom -= new Vector2(0.1f, 0.1f);
+						GetNode<MapController>("../MapController").UpdateMap(level);
+					}
+					break;
 			}
 		}
 	}

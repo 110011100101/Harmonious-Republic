@@ -1,6 +1,7 @@
 <Project Sdk="Godot.NET.Sdk/4.4.0">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <CodeAnalysisRuleSet>e:\Harmonious-Republic\harmonious-republic\.vscode\ruleset.xml</CodeAnalysisRuleSet>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>HarmoniousRepublic</RootNamespace>
   </PropertyGroup>

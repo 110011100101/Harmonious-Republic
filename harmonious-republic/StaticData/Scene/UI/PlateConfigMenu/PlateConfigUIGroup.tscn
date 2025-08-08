@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxu41doybqic2"]
+[gd_scene load_steps=8 format=3 uid="uid://dxu41doybqic2"]
 
 [ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_b8ma6"]
 [ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="8_1qyl6"]
@@ -6,7 +6,6 @@
 [ext_resource type="SpriteFrames" uid="uid://b2pcremokbpcb" path="res://Assets/Animation/120fpsEarthRolling.tres" id="9_t4uqs"]
 [ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/Class/Lable/PlateNameLable.cs" id="10_qgpoj"]
 [ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/Class/Setup/SetUpPlateSize.cs" id="11_t4uqs"]
-[ext_resource type="Script" uid="uid://cpx0b0mqgvuku" path="res://Code/Class/Setup/SetUpSubdivisionFactor.cs" id="12_1qyl6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hq3ti"]
 atlas = ExtResource("8_1qyl6")
@@ -34,12 +33,13 @@ layout_mode = 0
 offset_right = 2560.0
 offset_bottom = 1400.0
 tab_alignment = 1
-current_tab = 0
+current_tab = 1
 clip_tabs = false
 tab_focus_mode = 1
 metadata/_edit_lock_ = true
 
 [node name="Game" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 0
 
@@ -87,7 +87,6 @@ uppercase = true
 script = ExtResource("10_qgpoj")
 
 [node name="Plate" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
-visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
@@ -100,41 +99,23 @@ offset_bottom = 307.0
 theme_override_constants/separation = 60
 
 [node name="PlateSize" type="HBoxContainer" parent="NinePatchRect/TabContainer/Plate/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 40
 
 [node name="PlateSize" type="Label" parent="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize"]
 layout_mode = 2
-text = "板块大小"
+text = "地图大小"
 
 [node name="SetUpPlateSize" type="SpinBox" parent="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+min_value = 100.0
 max_value = 1000.0
-value = 100.0
+value = 1000.0
+rounded = true
 suffix = "block"
 select_all_on_focus = true
 script = ExtResource("11_t4uqs")
-metadata/_edit_use_anchors_ = true
-
-[node name="SubdivisionFactor" type="HBoxContainer" parent="NinePatchRect/TabContainer/Plate/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 40
-
-[node name="SubdivisionFactor" type="Label" parent="NinePatchRect/TabContainer/Plate/VBoxContainer/SubdivisionFactor"]
-layout_mode = 2
-text = "扩展因子"
-
-[node name="SetUpSubdivisionFactor" type="SpinBox" parent="NinePatchRect/TabContainer/Plate/VBoxContainer/SubdivisionFactor"]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-max_value = 1000.0
-value = 1.0
-update_on_text_changed = true
-prefix = "1  : "
-select_all_on_focus = true
-script = ExtResource("12_1qyl6")
 metadata/_edit_use_anchors_ = true
 
 [node name="More" type="NinePatchRect" parent="NinePatchRect/TabContainer"]
@@ -174,4 +155,3 @@ metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
 [connection signal="text_changed" from="NinePatchRect/TabContainer/Game/SetUpPlateName" to="NinePatchRect/TabContainer/Game/PlateName" method="ChangeText"]
 [connection signal="value_changed" from="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize/SetUpPlateSize" to="NinePatchRect/TabContainer/Plate/VBoxContainer/PlateSize/SetUpPlateSize" method="_UpdateMapSize"]
-[connection signal="value_changed" from="NinePatchRect/TabContainer/Plate/VBoxContainer/SubdivisionFactor/SetUpSubdivisionFactor" to="NinePatchRect/TabContainer/Plate/VBoxContainer/SubdivisionFactor/SetUpSubdivisionFactor" method="_UpdateSetUpSubdivisionFactor"]

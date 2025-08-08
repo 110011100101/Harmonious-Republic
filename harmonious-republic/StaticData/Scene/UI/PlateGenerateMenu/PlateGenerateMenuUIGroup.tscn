@@ -22,6 +22,7 @@ region = Rect2(64, 0, 64, 64)
 size = Vector2(300, 300)
 
 [node name="PlateGenerateMenuUiGroup" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,11 +76,7 @@ layout_mode = 2
 disabled = true
 text = "确认出生点"
 script = ExtResource("7_ode3n")
-<<<<<<< HEAD
 scenePath = "res://StaticData/Scene/Menu/PlayGround.tscn"
-=======
-scenePath = "res://StaticData/Scene/Menu/LoadingGameMenu.tscn"
->>>>>>> 8ca785b4bd2b34da06a7055c415504461de41885
 metadata/_custom_type_script = "uid://dp2or2ioq3iq1"
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="NinePatchRect"]
@@ -102,7 +99,7 @@ script = ExtResource("2_44xyb")
 tileSet = ExtResource("3_a47p6")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="NinePatchRect/SubViewportContainer/SubViewport"]
-energy = 0.5
+energy = 0.45
 
 [node name="TouchLocatingPad" type="Area2D" parent="NinePatchRect"]
 position = Vector2(2088, 1196)
