@@ -1,10 +1,12 @@
 using Godot;
+using HarmoniousRepublic;
 
 public partial class PlayGround : Node2D
 {
 	private Node2D Map;
 	[Export] private TileSet tileSet;
 	Data data;
+
 
 	public override void _Ready()
 	{
@@ -13,12 +15,12 @@ public partial class PlayGround : Node2D
 		data = GetNode<Data>("/root/Data");
 
 		// 然后调用地图更新方法
-		for (int z = 0; z < 5; z++)
+		for (int z = 0; z < Constants.LayerCount; z++)
 		{
-			// 把shader的路径替换成到时候要用的路径
+			// TODO: 把shader的路径替换成到时候要用的路径
 			TileMapLayer level = new TileMapLayer() { Name = $"{z}", TileSet = tileSet };
 			ShaderMaterial shaderMaterial = new ShaderMaterial();
-			shaderMaterial.Shader = GD.Load<Shader>("res://test/test_tilemaplayer.gdshader");
+			shaderMaterial.Shader = GD.Load<Shader>("res://Code/Shader/GameMapShader.gdshader");
 			level.Material = shaderMaterial;
 			Map.AddChild(level);
 		}

@@ -1,21 +1,8 @@
 using Godot;
-using System.Threading.Tasks;
+using HarmoniousRepublic;
 
 public partial class MapController : Node2D
 {
-	private const float ScaleFactor = 0.85f;
-	private const float TileSize = 64f;
-	private const float CameraWidth = 2560f;
-	private const float CameraHeight = 1600f;
-	private const int LayerCount = 5;
-	private const int AirMaterialId = (int)EnumMaterial.Air;
-	private const int InvalidSourceId = -1;
-	private const int RangePadding = 3;
-	private const int MinBorderWidth = 2;
-	private const float BorderWidthFactor = 2f;
-	private const int LevelOffset = 4;
-	private const int SpecialLayerThreshold = 2; // LayerCount - SpecialLayerThreshold为特殊层
-
 	public override void _Ready()
 	{
 	}
@@ -24,101 +11,64 @@ public partial class MapController : Node2D
 	{
 	}
 
-	// 更新地图层的缩放、位置和可见性
-	public void UpdateMap(float baseLevel)
+	public void UpdateMap(float cameraLevel)
 	{
-		// 获取相机和地图数据引用
-		Camera2D camera = GetNode<Camera2D>("../PlayCamera");
-		Data data = GetNode<Data>("/root/Data");
+		Camera2D camera = GetNode<Camera2D>("../PlayCamera");						// 获取相机节点
+		Data data = GetNode<Data>("/root/Data");									// 获取数据节点
 		
-		// 空值检查确保必要组件存在
-		if (camera == null || data == null || data.gameMap == null)
-		{
-			return;
-		}
+		if (camera == null || data == null || data.gameMap == null) { return; }		// 安全性检测
 		
-		Vector2 cameraPos = camera.GlobalPosition;
-		Vector2 cameraZoom = camera.Zoom;
+		Vector2 cameraPos = camera.GlobalPosition;									// 获取相机位置
+		Vector2 cameraZoom = camera.Zoom;											// 获取相机缩放
 		
-		// 计算基础层级值
-		float floorBaseLevel = Mathf.Floor(baseLevel);
-		
-		// 遍历所有地图层进行更新
-		for (int index = 0; index < LayerCount; index++)
-		{
-			// 计算当前层的级别和缩放值
-			float level = index + baseLevel - LevelOffset;
-			float scale = Mathf.Pow(ScaleFactor, floorBaseLevel - level);
+		float floorBaseLevel = Mathf.Floor(cameraLevel);                            // 计算整数基准层
 
-			// 获取当前层和材质
+		for (int index = 0; index < Constants.LayerCount; index++)
+		{
 			TileMapLayer tileMapLayer = GetChild<TileMapLayer>(index);
 			if (tileMapLayer == null) continue;
 
 			ShaderMaterial material = tileMapLayer.Material as ShaderMaterial;
 			if (material == null) continue;
 
-			// 应用缩放和位置变换
-			tileMapLayer.Scale = new Vector2(scale, scale);
-			tileMapLayer.Position = (1f - scale) * cameraPos;
-
-			// 计算视口内的渲染范围
-			int xBaseIndex = (int)Mathf.Floor(cameraPos.X / TileSize);
-			int yBaseIndex = (int)Mathf.Floor(cameraPos.Y / TileSize);
-			int xRange = (int)(CameraWidth / (TileSize * cameraZoom.X * scale)) + RangePadding;
-			int yRange = (int)(CameraHeight / (TileSize * cameraZoom.Y * scale)) + RangePadding;
+			float realLevel = index + floorBaseLevel - Constants.BaseLayerIndex;
+			float levelDiffer = cameraLevel - realLevel;
+			float scale = Mathf.Pow(Constants.ScaleFactor, levelDiffer);
+			int xBaseIndex = (int)Mathf.Floor(cameraPos.X / Constants.TileSize);
+			int yBaseIndex = (int)Mathf.Floor(cameraPos.Y / Constants.TileSize);
+			int xRange = (int)(Constants.CameraWidth / (Constants.TileSize * cameraZoom.X * scale)) + Constants.RangePadding;
+			int yRange = (int)(Constants.CameraHeight / (Constants.TileSize * cameraZoom.Y * scale)) + Constants.RangePadding;
 			int xStart = xBaseIndex - xRange / 2;
 			int yStart = yBaseIndex - yRange / 2;
 			int xEnd = xBaseIndex + xRange / 2;
 			int yEnd = yBaseIndex + yRange / 2;
-
-			// 计算当前层的整数级别索引
-			int levelIndex = (int)Mathf.Floor(level);
-
-			// 计算边缘宽度
-			int borderWidth = Mathf.Max(MinBorderWidth, Mathf.CeilToInt(BorderWidthFactor / ((cameraZoom.X + cameraZoom.Y) / 2f)));
-			
-			// 合并视口内部和边缘区域的处理
+			int levelIndex = (int)Mathf.Floor(realLevel);
+			int borderWidth = Mathf.Max(Constants.MinBorderWidth, Mathf.CeilToInt(Constants.BorderWidthFactor / ((cameraZoom.X + cameraZoom.Y) / 2f)));
 			int minX = xStart - borderWidth;
 			int maxX = xEnd + borderWidth;
 			int minY = yStart - borderWidth;
 			int maxY = yEnd + borderWidth;
-			
-			// 提取是否为顶层或次顶层的判断
-			bool isSpecialLayer = index >= LayerCount - SpecialLayerThreshold; // 简化判断，包括顶层和次顶层
-			
-			// 遍历所有图块位置进行渲染处理
+			bool isSpecialLayer = scale >= 0.85f;
+
 			for (int x = minX; x < maxX; x++)
-			{
 				for (int y = minY; y < maxY; y++)
 				{
-					// 判断是否在视口内部区域
 					bool isInView = x >= xStart && x < xEnd && y >= yStart && y < yEnd;
-					
-					if (IsInRange(data.gameMap, new Vector3I(x, y, levelIndex)))
-					{
-						if (isInView)
-						{
-							// 统一处理图块渲染逻辑
-							HandleTileRendering(data, tileMapLayer, x, y, levelIndex, isSpecialLayer);
-						}
-						else
-						{
-							// 处理边缘区域：清除图块以优化性能
-							if (tileMapLayer.GetCellSourceId(new Vector2I(x, y)) != InvalidSourceId)
-							{
-								tileMapLayer.EraseCell(new Vector2I(x, y));
-							}
-						}
-					}
-				}
-			}
 
-			// 设置着色器参数，使用与层级计算一致的公式
-			material.SetShaderParameter("levelDiff", floorBaseLevel - level);
+					if (IsInRange(data.gameMap, new Vector3I(x, y, levelIndex)) && isInView)
+						HandleTileRendering(data, tileMapLayer, x, y, levelIndex, isSpecialLayer);
+					else if (tileMapLayer.GetCellSourceId(new Vector2I(x, y)) != Constants.InvalidSourceId)
+						tileMapLayer.EraseCell(new Vector2I(x, y));
+				}
+
+			tileMapLayer.Scale = new Vector2(scale, scale);
+			tileMapLayer.Position = (1f - scale) * cameraPos;
+
+			material.SetShaderParameter("index", index);
+			material.SetShaderParameter("alpha", 1 + levelDiffer);
 		}
 	}
 
-	// 检查指定坐标是否在地图范围内
 	public bool IsInRange<T>(T[,,] map, Vector3I index)
 	{
 		if (map == null) return false;
@@ -133,51 +83,51 @@ public partial class MapController : Node2D
 	{
 		if (map == null) return false;
 		
-		// 顶层图块不会被遮挡
 		if (index.Z >= map.GetLength(2) - 1)
 			return false;
 
-		// 如果上层图块不为空气，则当前图块被遮挡
 		return map[index.X, index.Y, index.Z + 1].material != EnumMaterial.Air;
 	}
-	
-	// 新增方法：统一处理图块渲染逻辑
+
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="data">数据节点</param>
+	/// <param name="tileMapLayer"></param>
+	/// <param name="x"></param>
+	/// <param name="y"></param>
+	/// <param name="levelIndex"></param>
+	/// <param name="isSpecialLayer"></param>
 	private void HandleTileRendering(Data data, TileMapLayer tileMapLayer, int x, int y, int levelIndex, bool isSpecialLayer)
 	{
-		// 特殊层总是渲染，其他层需要检查是否被遮挡
 		bool shouldRender = isSpecialLayer || !IsCovered(data.gameMap, new Vector3I(x, y, levelIndex));
 
 		if (shouldRender)
 		{
-			// 只渲染非空气材质的图块
 			if (data.gameMap[x, y, levelIndex].material != EnumMaterial.Air)
 			{
-				// 检查图块是否需要更新
 				int targetMaterial = (int)data.gameMap[x, y, levelIndex].material;
 				int currentSourceId = tileMapLayer.GetCellSourceId(new Vector2I(x, y));
 
 				if (targetMaterial != currentSourceId)
 				{
-					// 设置或清除图块
-					if (targetMaterial != AirMaterialId)
+					if (targetMaterial != Constants.AirMaterialId)
 					{
-						tileMapLayer.SetCell(new Vector2I(x, y), targetMaterial, new Vector2I(4, 1));
+						tileMapLayer.SetCell(new Vector2I(x, y), targetMaterial, new Vector2I(0, 0));
 					}
-					else if (currentSourceId != InvalidSourceId)
+					else if (currentSourceId != Constants.InvalidSourceId)
 					{
 						tileMapLayer.EraseCell(new Vector2I(x, y));
 					}
 				}
 			}
-			else if (tileMapLayer.GetCellSourceId(new Vector2I(x, y)) != InvalidSourceId)
+			else if (tileMapLayer.GetCellSourceId(new Vector2I(x, y)) != Constants.InvalidSourceId)
 			{
-				// 清除空气图块的显示
 				tileMapLayer.EraseCell(new Vector2I(x, y));
 			}
 		}
-		else if (tileMapLayer.GetCellSourceId(new Vector2I(x, y)) != InvalidSourceId)
+		else if (tileMapLayer.GetCellSourceId(new Vector2I(x, y)) != Constants.InvalidSourceId)
 		{
-			// 遮挡剔除：如果当前块被上层块遮挡，则清除当前块的显示
 			tileMapLayer.EraseCell(new Vector2I(x, y));
 		}
 	}

@@ -44,8 +44,6 @@ public partial class MapGenerator : Node2D
     // 地图生成限制参数
     private const int MaxZLevel = 100;
     private const int SurfaceLayerDepth = 20;
-    private const int MinPlateSize = 10;
-    private const int MaxPlateSize = 500;
     
     // 高度层级定义，用于颜色分级
     private const int HeightLevelMin = 20;
@@ -142,12 +140,6 @@ public partial class MapGenerator : Node2D
         {
             // 获取地图尺寸参数
             int plateSize = GetNode<Data>("/root/Data").plateSize;
-            
-            // 验证地图尺寸参数
-            if (plateSize < MinPlateSize || plateSize > MaxPlateSize)
-            {
-                return;
-            }
             
             // 生成游戏地图数据
             Block[,,] gameMap = GenerateMap(plateSize);
@@ -278,12 +270,6 @@ public partial class MapGenerator : Node2D
     // 生成地图数据
     public Block[,,] GenerateMap(int plateSize)
     {
-        // 参数验证
-        if (plateSize < MinPlateSize || plateSize > MaxPlateSize)
-        {
-            return null;
-        }
-        
         try
         {
             // 初始化环境地图和游戏地图

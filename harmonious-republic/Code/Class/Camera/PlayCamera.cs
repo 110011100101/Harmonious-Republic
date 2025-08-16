@@ -1,33 +1,39 @@
+using System.Reflection.Metadata;
 using Godot;
+using HarmoniousRepublic;
 
 // 注意: Camera有独立的设置Position的方法,用于监控位置的变更
 public partial class PlayCamera : Camera2D
 {
-	public float level = 50;
-	public float targetLevel = 50;
+	public float cameraLevel;
+	public float targetLevel;
 	bool isTargetLevelChanged = false;
 
 	public override void _Ready()
 	{
+		cameraLevel = 50f;
+		targetLevel = 50f;
 	}
 
 	public override void _Process(double delta)
 	{
 		// 插值设置层数
-		if (isTargetLevelChanged && Mathf.Abs(targetLevel - level) <= 0.01f)
+		if (isTargetLevelChanged && Mathf.Abs(targetLevel - cameraLevel) <= 0.01f)
 		{
-			level = targetLevel;
-			GetNode<MapController>("../MapController").UpdateMap(targetLevel);
 			isTargetLevelChanged = false;
+			cameraLevel = targetLevel;
+
+			GetNode<MapController>("../MapController").UpdateMap(cameraLevel);
+			GetNode<Label>("Label").Text = $"Level:{cameraLevel}";
 		}
-		else if (level != targetLevel)
+		else if (cameraLevel != targetLevel)
 		{
 			isTargetLevelChanged = true;
-			level = Mathf.Lerp(level, targetLevel, 0.1f);
-			// 调用那个函数
-			GetNode<MapController>("../MapController").UpdateMap(level);
+			cameraLevel = Mathf.Lerp(cameraLevel, targetLevel, Constants.cameraSwitchLevelLerp);
+
+			GetNode<MapController>("../MapController").UpdateMap(cameraLevel);
+			GetNode<Label>("Label").Text = $"Level:{cameraLevel}\nTargetLevel:{targetLevel}\nStep:{Mathf.Lerp(cameraLevel, targetLevel, 0.1f)}";
 		}
-		GetNode<Label>("Label").Text = "Level:" + level;
 	}
 
 	public override void _Input(InputEvent @event)
@@ -65,9 +71,9 @@ public partial class PlayCamera : Camera2D
 				case MouseButton.WheelUp:
 					if (mouseButtonEvent.Pressed)
 					{
-						if (targetLevel < 100)
+						if (targetLevel > 0)
 						{
-							targetLevel += 1;
+							targetLevel -= 1;
 						}
 					}
 					break;
@@ -75,9 +81,9 @@ public partial class PlayCamera : Camera2D
 				case MouseButton.WheelDown:
 					if (mouseButtonEvent.Pressed)
 					{
-						if (targetLevel > 0)
+						if (targetLevel < 100)
 						{
-							targetLevel -= 1;
+							targetLevel += 1;
 						}
 					}
 					break;
@@ -90,7 +96,7 @@ public partial class PlayCamera : Camera2D
 			{
 				var mouseDelta = mouseMotionEvent.Relative / Zoom;
 				Translate(new Vector2(-mouseDelta.X, -mouseDelta.Y));
-				GetNode<MapController>("../MapController").UpdateMap(level);
+				GetNode<MapController>("../MapController").UpdateMap(cameraLevel);
 			}
 		}
 
@@ -102,7 +108,7 @@ public partial class PlayCamera : Camera2D
 					if (keyEvent.Pressed)
 					{
 						Zoom += new Vector2(0.1f, 0.1f);
-						GetNode<MapController>("../MapController").UpdateMap(level);
+						GetNode<MapController>("../MapController").UpdateMap(cameraLevel);
 					}
 					break;
 
@@ -110,7 +116,7 @@ public partial class PlayCamera : Camera2D
 					if (keyEvent.Pressed)
 					{
 						Zoom -= new Vector2(0.1f, 0.1f);
-						GetNode<MapController>("../MapController").UpdateMap(level);
+						GetNode<MapController>("../MapController").UpdateMap(cameraLevel);
 					}
 					break;
 			}
