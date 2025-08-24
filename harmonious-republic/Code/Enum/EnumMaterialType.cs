@@ -1,3 +1,5 @@
+namespace HarmoniousRepublic.Code.Enum;
+
 public enum EnumMaterialType
 {
     Solid, // 固体

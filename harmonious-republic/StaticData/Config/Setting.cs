@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace HarmoniousRepublic.StaticData.Config;
 
 public partial class Setting : Resource
 {

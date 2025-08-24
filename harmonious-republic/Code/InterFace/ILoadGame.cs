@@ -1,18 +1,17 @@
-using RoseIsland.CustomClass;
+using HarmoniousRepublic.Code.Library.RoseIsland;
 
-namespace LoadGame
+namespace HarmoniousRepublic.Code.InterFace;
+
+public interface ILoadGame :
+    IDetailedHeightMap,
+    IDetailedEnvironmentMap;
+
+public interface IDetailedHeightMap
 {
-    public interface ILoadGame:
-        IDetailedHeightMap,
-        IDetailedEnvironmentMap;
+    Matrix<int> DetailedHeightMap(Matrix<int> hightMap, int mapSize, int subdivisionFactor);
+}
 
-    public interface IDetailedHeightMap
-    {
-        Matrix<int> DetailedHeightMap(Matrix<int> hightMap, int mapSize, int subdivisionFactor);
-    }
-
-    public interface IDetailedEnvironmentMap
-    {
-        Matrix<int> DetailedEnvironmentMap(Matrix<int> heightMap, Matrix<int> detailedHeightMap, Matrix<float> humidityMap, Matrix<float> temperatureMap, Matrix<int> environmentMap);
-    } 
+public interface IDetailedEnvironmentMap
+{
+    Matrix<int> DetailedEnvironmentMap(Matrix<int> heightMap, Matrix<int> detailedHeightMap, Matrix<float> humidityMap, Matrix<float> temperatureMap, Matrix<int> environmentMap);
 }

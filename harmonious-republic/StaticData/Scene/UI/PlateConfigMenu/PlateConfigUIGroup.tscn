@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://dxu41doybqic2"]
 
 [ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_b8ma6"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/CustomNode/ChangeSceneButton.cs" id="6_6gjhe"]
 [ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="8_1qyl6"]
-[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/CutomNode/Button/ChangeSceneButton.cs" id="9_qe8la"]
 [ext_resource type="SpriteFrames" uid="uid://b2pcremokbpcb" path="res://Assets/Animation/120fpsEarthRolling.tres" id="9_t4uqs"]
-[ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/Class/Lable/PlateNameLable.cs" id="10_qgpoj"]
-[ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/Class/Setup/SetUpPlateSize.cs" id="11_t4uqs"]
+[ext_resource type="Script" uid="uid://ct3kggc7d2x" path="res://Code/CustomNode/PlateNameLable.cs" id="10_qgpoj"]
+[ext_resource type="Script" uid="uid://ba8o2gh2qmnrd" path="res://Code/CustomNode/SetUpPlateSize.cs" id="11_t4uqs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hq3ti"]
 atlas = ExtResource("8_1qyl6")
@@ -141,7 +141,7 @@ theme_override_constants/separation = 300
 [node name="CreatPlate" type="Button" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
 text = "创建世界"
-script = ExtResource("9_qe8la")
+script = ExtResource("6_6gjhe")
 scenePath = "res://StaticData/Scene/Menu/PlateGenerateMenu.tscn"
 metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
@@ -149,7 +149,7 @@ metadata/_custom_type_script = "uid://dvb08pem1oow2"
 layout_mode = 2
 text = "退回主菜单
 "
-script = ExtResource("9_qe8la")
+script = ExtResource("6_6gjhe")
 scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
 metadata/_custom_type_script = "uid://dvb08pem1oow2"
 

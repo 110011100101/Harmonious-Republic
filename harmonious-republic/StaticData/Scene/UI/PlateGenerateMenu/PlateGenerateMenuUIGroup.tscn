@@ -1,14 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bt358hrgyw8q1"]
+[gd_scene load_steps=12 format=3 uid="uid://bt358hrgyw8q1"]
 
 [ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_mepea"]
-[ext_resource type="Script" uid="uid://ct7fdwuseissd" path="res://Code/CutomNode/MapGenerator.cs" id="2_44xyb"]
-[ext_resource type="TileSet" uid="uid://c8a0kno7337ss" path="res://Assets/TileSet/default.tres" id="3_a47p6"]
-[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/CutomNode/Button/ChangeSceneButton.cs" id="4_7fjhj"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/CustomNode/ChangeSceneButton.cs" id="3_80os5"]
+[ext_resource type="Script" uid="uid://dp2or2ioq3iq1" path="res://Code/CustomNode/ConfirmButton.cs" id="4_mepea"]
+[ext_resource type="Script" uid="uid://ct7fdwuseissd" path="res://Code/CustomNode/MapGenerator.cs" id="5_4ey3c"]
 [ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="5_ode3n"]
-[ext_resource type="Script" uid="uid://dp2or2ioq3iq1" path="res://Code/CutomNode/Button/ConfirmButton.cs" id="7_ode3n"]
-[ext_resource type="Script" uid="uid://be4okq5hrpfwl" path="res://Code/CutomNode/TouchLocatingPad.cs" id="8_mepea"]
-[ext_resource type="Script" uid="uid://dfv6hc7en3f0p" path="res://Code/Class/Camera/PlateGenerateMenuCamera.cs" id="9_80os5"]
-[ext_resource type="Script" uid="uid://vn8ix21dka8u" path="res://Code/Class/Lable/InformationPad.cs" id="11_s8go2"]
+[ext_resource type="Script" uid="uid://be4okq5hrpfwl" path="res://Code/CustomNode/TouchLocatingPad.cs" id="6_80os5"]
+[ext_resource type="Script" uid="uid://dfv6hc7en3f0p" path="res://Code/CustomNode/PlateGenerateMenuCamera.cs" id="9_80os5"]
+[ext_resource type="Script" uid="uid://vn8ix21dka8u" path="res://Code/CustomNode/InformationPad.cs" id="11_s8go2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_44xyb"]
 atlas = ExtResource("5_ode3n")
@@ -60,14 +59,14 @@ theme_override_constants/separation = 100
 layout_mode = 2
 text = "返回上一级
 "
-script = ExtResource("4_7fjhj")
+script = ExtResource("3_80os5")
 scenePath = "res://StaticData/Scene/Menu/PlateConfigMenu.tscn"
 metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
 [node name="BackToMainMenu" type="Button" parent="NinePatchRect/HBoxContainer"]
 layout_mode = 2
 text = "返回主菜单"
-script = ExtResource("4_7fjhj")
+script = ExtResource("3_80os5")
 scenePath = "res://StaticData/Scene/Menu/MainMenu.tscn"
 metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
@@ -75,7 +74,7 @@ metadata/_custom_type_script = "uid://dvb08pem1oow2"
 layout_mode = 2
 disabled = true
 text = "确认出生点"
-script = ExtResource("7_ode3n")
+script = ExtResource("4_mepea")
 scenePath = "res://StaticData/Scene/Menu/PlayGround.tscn"
 metadata/_custom_type_script = "uid://dp2or2ioq3iq1"
 
@@ -95,17 +94,16 @@ size = Vector2i(1000, 1000)
 render_target_update_mode = 4
 
 [node name="MapGenerator" type="Node2D" parent="NinePatchRect/SubViewportContainer/SubViewport"]
-script = ExtResource("2_44xyb")
-tileSet = ExtResource("3_a47p6")
+script = ExtResource("5_4ey3c")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="NinePatchRect/SubViewportContainer/SubViewport"]
 energy = 0.45
 
 [node name="TouchLocatingPad" type="Area2D" parent="NinePatchRect"]
 position = Vector2(2088, 1196)
-script = ExtResource("8_mepea")
-PointTexturePath = "res://Assets/UI_Texture/point.png"
+script = ExtResource("6_80os5")
 subViewportPath = "../SubViewportContainer/SubViewport"
+pointTexturePath = "res://Assets/UI_Texture/point.png"
 
 [node name="TextureRect" type="TextureRect" parent="NinePatchRect/TouchLocatingPad"]
 clip_contents = true

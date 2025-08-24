@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://cov78r4l27hsm"]
 
 [ext_resource type="Theme" uid="uid://dwmc7vfl1gjyc" path="res://StaticData/Theme/UI.tres" id="1_uqm2j"]
+[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/CustomNode/ChangeSceneButton.cs" id="4_uqm2j"]
 [ext_resource type="Texture2D" uid="uid://c4dpcxfvoxhi2" path="res://Assets/UI_Texture/认真的雪❄️.png" id="4_vhxcr"]
-[ext_resource type="Script" uid="uid://dvb08pem1oow2" path="res://Code/CutomNode/Button/ChangeSceneButton.cs" id="5_vhxcr"]
-[ext_resource type="Script" uid="uid://cjhqjbjovdks1" path="res://Code/CutomNode/Button/QuirGameButton.cs" id="7_fruq7"]
+[ext_resource type="Script" uid="uid://cjhqjbjovdks1" path="res://Code/CustomNode/QuirGameButton.cs" id="5_vhxcr"]
 [ext_resource type="Texture2D" uid="uid://q2jnjmco30ew" path="res://Assets/UI_Texture/同调共和LOGO-export.png" id="7_kk1wt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fruq7"]
@@ -69,18 +69,18 @@ theme_override_constants/separation = 40
 [node name="CratePlate" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 text = "创建星球"
-script = ExtResource("5_vhxcr")
+script = ExtResource("4_uqm2j")
 scenePath = "res://StaticData/Scene/Menu/PlateConfigMenu.tscn"
 metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
 [node name="Setting" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 text = "设置"
-script = ExtResource("5_vhxcr")
+script = ExtResource("4_uqm2j")
 metadata/_custom_type_script = "uid://dvb08pem1oow2"
 
 [node name="Exit" type="Button" parent="Menu/VBoxContainer"]
 layout_mode = 2
 text = "关闭整个游戏"
-script = ExtResource("7_fruq7")
+script = ExtResource("5_vhxcr")
 metadata/_custom_type_script = "uid://cjhqjbjovdks1"
